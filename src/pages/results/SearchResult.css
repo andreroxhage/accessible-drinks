@@ -1,0 +1,24 @@
+.result-text {
+	font-family: Calibri;
+	font-size: 20px;
+	font-style: normal;
+	line-height: 150%;
+	/* 24px */
+	margin-top: 20px;
+	text-align: left;
+	text-decoration: none !important;
+}
+.result-text-title {
+	font-family: Calibri;
+	font-size: 20px;
+	font-style: normal;
+	line-height: 150%;
+	font-weight: bold;
+	/* 24px */
+	margin-top: 20px;
+	text-align: left;
+	text-decoration: none !important;
+}
+.no-result {
+	min-height: 80vh;
+}
