@@ -27,7 +27,7 @@ const SearchResult = ({ drinks })=>{
                         children: drink.strDrink
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/SearchResults.tsx",
-                        lineNumber: 22,
+                        lineNumber: 18,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -36,7 +36,7 @@ const SearchResult = ({ drinks })=>{
                         children: "See details"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/SearchResults.tsx",
-                        lineNumber: 23,
+                        lineNumber: 19,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -50,7 +50,7 @@ const SearchResult = ({ drinks })=>{
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/components/SearchResults.tsx",
-                                        lineNumber: 28,
+                                        lineNumber: 29,
                                         columnNumber: 17
                                     }, this),
                                     " ",
@@ -58,23 +58,23 @@ const SearchResult = ({ drinks })=>{
                                 ]
                             }, key, true, {
                                 fileName: "[project]/src/app/components/SearchResults.tsx",
-                                lineNumber: 27,
+                                lineNumber: 28,
                                 columnNumber: 15
                             }, this))
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/SearchResults.tsx",
-                        lineNumber: 24,
+                        lineNumber: 25,
                         columnNumber: 11
                     }, this)
                 ]
             }, index, true, {
                 fileName: "[project]/src/app/components/SearchResults.tsx",
-                lineNumber: 18,
+                lineNumber: 17,
                 columnNumber: 9
             }, this))
     }, void 0, false, {
         fileName: "[project]/src/app/components/SearchResults.tsx",
-        lineNumber: 16,
+        lineNumber: 15,
         columnNumber: 5
     }, this);
 };
@@ -176,7 +176,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$utils$2f$searc
 ;
 ;
 function SearchResultsPage({ params }) {
-    const { searchQuery } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["use"])(params); // Unwrap `params` using `React.use()`
+    const { searchQuery } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["use"])(params);
     const [searchResult, setSearchResult] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -192,7 +192,7 @@ function SearchResultsPage({ params }) {
                     setSearchResult(result);
                 }
             } catch (err) {
-                setError("No results found");
+                setError('No results found');
             } finally{
                 setLoading(false);
             }

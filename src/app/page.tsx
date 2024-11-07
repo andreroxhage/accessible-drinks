@@ -1,8 +1,6 @@
 import Carousel from './components/Carousel';
 import carouselLoader from './utils/carouselLoader';
 
-// import NavigationBar from '@sj-ab/component-library.ui.navigation-bar/dist/NavigationBar.js';
-
 export default async function Home() {
   const drinks = await carouselLoader();
 

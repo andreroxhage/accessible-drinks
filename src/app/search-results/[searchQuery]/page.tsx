@@ -10,8 +10,8 @@ export default function SearchResultsPage({
 }: {
   params: Promise<{ searchQuery: string }>;
 }) {
-  const { searchQuery } = use(params); // Unwrap `params` using `React.use()`
-  
+  const { searchQuery } = use(params);
+
   const [searchResult, setSearchResult] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export default function SearchResultsPage({
           setSearchResult(result);
         }
       } catch (err) {
-        setError("No results found");
+        setError('No results found');
       } finally {
         setLoading(false);
       }

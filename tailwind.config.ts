@@ -18,6 +18,7 @@ const config: Config = {
         secondary: {
           pink: '#FFC0CB',
           'pink-darker': '#997379',
+          'pink-lighter': '#ffedf4',
         },
         accent: {
           green: '#BCD3BB',
@@ -28,6 +29,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
 export default config;
