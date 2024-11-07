@@ -18,7 +18,7 @@ const config: Config = {
         secondary: {
           pink: '#FFC0CB',
           'pink-darker': '#997379',
-          'pink-lighter': '#ffedf4',
+          'pink-lighter': '#fff7fa',
         },
         accent: {
           green: '#BCD3BB',

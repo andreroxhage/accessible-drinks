@@ -29,6 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-whiteish text-blackish`}
       >
+        <a href="#main-content" className="sr-only">
+          Skip to Main Content
+        </a>
         <Navbar />
         {children}
       </body>
