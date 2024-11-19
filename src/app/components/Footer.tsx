@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 const navigation = {
   solutions: [
@@ -30,12 +29,12 @@ export default function Footer() {
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.solutions.map(item => (
                     <li key={item.name}>
-                      <Link
+                      <a
                         href={item.href}
                         className="text-sm leading-6 text-gray-200 hover:text-white"
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>

@@ -1,8 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/categories/page": "app/categories/page.js",
-  "/search-results/[searchQuery]/page": "app/search-results/[searchQuery]/page.js",
-  "/search-results/drink/[id]/page": "app/search-results/drink/[id]/page.js"
-}
