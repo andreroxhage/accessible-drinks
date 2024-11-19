@@ -12,8 +12,8 @@ const config: Config = {
         primary: {
           blackish: '#222222',
           whiteish: '#FEFEFE',
-          grey: '#40403B',
-          'grey-brighter': '#5D5D56',
+          grey: '#575757',
+          'grey-brighter': '#878787',
         },
         secondary: {
           pink: '#FFC0CB',
@@ -26,6 +26,10 @@ const config: Config = {
           yellow: '#D1D3BB',
           blue: '#BBCCD3',
         },
+      },
+      textColor: {
+        body: '#222222', // All general text as blackish
+        header: '#40403B', // All headers as grey
       },
     },
   },
