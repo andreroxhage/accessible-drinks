@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { getCategories } from '../utils/database';
 
 interface AccordionItemProps {
   title: string;
@@ -56,12 +57,16 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
 const CategoriesAccordion: React.FC = () => {
   const [openSections, setOpenSections] = useState<string[]>([]);
-
+  const fetchCategories = async () => {
+    let cats = await getCategories();
+    
+  }
   const toggleSection = (id: string) => {
     setOpenSections(prev =>
       prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
     );
   };
+
 
   const accordionData = [
     {
