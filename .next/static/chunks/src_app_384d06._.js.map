@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/andre/Documents/Studier/accessible-drinks/src/app/components/DrinkCard.tsx"],"sourcesContent":["interface DrinkCardProps {\n  drink: any;\n}\n\nconst DrinkCard: React.FC<DrinkCardProps> = ({ drink }) => {\n  return (\n    <div>\n      <img src={drink.strDrinkThumb} alt={drink.strDrink} />\n      <h3>{drink.strDrink}</h3>\n      <p>{drink.strInstructions}</p>\n    </div>\n  );\n};\n\nexport default DrinkCard;\n"],"names":[],"mappings":";;;;;AAIA,MAAM,YAAsC,CAAC,EAAE,KAAK,EAAE;IACpD,qBACE,6LAAC;;0BACC,6LAAC;gBAAI,KAAK,MAAM,aAAa;gBAAE,KAAK,MAAM,QAAQ;;;;;;0BAClD,6LAAC;0BAAI,MAAM,QAAQ;;;;;;0BACnB,6LAAC;0BAAG,MAAM,eAAe;;;;;;;;;;;;AAG/B;KARM;uCAUS"}},
-    {"offset": {"line": 51, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 57, "column": 0}, "map": {"version":3,"sources":["file:///Users/andre/Documents/Studier/accessible-drinks/src/app/components/SingleDrink.tsx"],"sourcesContent":["'use client';\nimport { useState, useEffect } from 'react';\nimport DrinkCard from './DrinkCard';\nimport singleDrinkLoader from '../utils/singleDrinkLoader';\n\ninterface SingleDrinkProps {\n  drinkId: string;\n}\n\nconst SingleDrink: React.FC<SingleDrinkProps> = ({ drinkId }) => {\n  if (!drinkId) {\n    return <div>Loading...</div>;\n  }\n\n  return (\n    <div>\n      <DrinkCard drink={drinkId} />\n    </div>\n  );\n};\n\nexport default SingleDrink;\n"],"names":[],"mappings":";;;;AAEA;AAFA;;;AASA,MAAM,cAA0C,CAAC,EAAE,OAAO,EAAE;IAC1D,IAAI,CAAC,SAAS;QACZ,qBAAO,6LAAC;sBAAI;;;;;;IACd;IAEA,qBACE,6LAAC;kBACC,cAAA,6LAAC,yIAAA,CAAA,UAAS;YAAC,OAAO;;;;;;;;;;;AAGxB;KAVM;uCAYS"}},
-    {"offset": {"line": 96, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
