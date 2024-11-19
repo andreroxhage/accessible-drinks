@@ -9,7 +9,7 @@ export default function Home() {
     >
       <div className=" grid grid-cols-1 lg:grid-cols-12 justify-between items-start gap-8 ">
         {/* Content Section - 2/3 width (8 columns) */}
-        <div className="flex flex-col items-start justify-start  lg:col-span-8">
+        <div className="flex flex-col items-start justify-start lg:col-span-8">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl text-header font-semibold tracking-tight">
             Accessibility in Every Sip
           </h1>
