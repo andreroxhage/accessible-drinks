@@ -154,7 +154,7 @@ export default function SearchResultsPage({
   return (
     <main
       id="main-content"
-      className="container mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32 min-h-screen"
+      className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen"
     >
       <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900">
