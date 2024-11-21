@@ -1,16 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface Drink {
-  idDrink: string;
-  strDrink: string;
-  strDrinkThumb: string;
-  strTags: string | null;
-  strGlass: string;
-  strAlcoholic: string;
-  strCategory: string;
-}
+import { Drink } from '@/app/types';
 
 interface SearchResultProps {
   drinks: Drink[];
@@ -40,6 +31,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
                 <Image
                   src={drink.strDrinkThumb}
                   alt={getAltText(drink)}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   fill
                   className="object-cover group-hover:opacity-75 transition-opacity"
                 />
