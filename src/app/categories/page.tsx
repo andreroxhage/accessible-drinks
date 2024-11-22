@@ -1,7 +1,8 @@
 import React from 'react';
+import spirits from '../spirits.json'
 import Accordion from '../components/CategoriesAccordion';
 
-export default function Categories() {
+export default async function Categories() {
   return (
     <>
       <main
@@ -56,10 +57,18 @@ export default function Categories() {
             </p>
           </section>
         </div>
-
-        {/* Accordion Section - 1/3 width (4 columns) */}
-        <div className="w-full max-w-2xl lg:max-w-none lg:col-span-4">
-          <Accordion />
+        <div>
+            <form className='container'>
+                <ul className='flex'>
+                    {spirits.map((e,i) => {
+                        return <li key={i}>
+                            <input id={e.strIngredient1} type='checkbox'/>
+                            <label htmlFor={e.strIngredient1}>{e.strIngredient1}</label>
+                        </li>
+                    })}
+                </ul>
+                <input className='button' type='submit' value={"Confirm"}/>
+            </form>
         </div>
       </main>
     </>
