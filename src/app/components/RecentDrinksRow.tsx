@@ -26,7 +26,7 @@ export default function RecentDrinksRow() {
           >
             <Link
               key={drink.idDrink}
-              href={`/drink/${drink.idDrink}`}
+              href={`/search-results/drink/${drink.idDrink}`}
               className="w-full"
               aria-label={`View details for ${drink.strDrink}`}
             >
