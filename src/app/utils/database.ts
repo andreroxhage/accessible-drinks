@@ -30,8 +30,8 @@ export async function getCategories():Promise<Category[]>{
     });
 }
 
-export async function getDrinksByCategory(category:string) {
-    return await apiFetch<{drinks:{strDrink:string, strDrinkThumb:string, idDrink:number}[]}>('filter.php?c=' + category);
+export async function getDrinksByCategory(category:Category) {
+    return await apiFetch<{drinks:{strDrink:string, strDrinkThumb:string, idDrink:number}[]}>('filter.php?c=' + category.title);
 }
 
 export async function getIngredients(){
