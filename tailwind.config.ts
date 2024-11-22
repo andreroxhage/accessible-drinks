@@ -31,6 +31,9 @@ const config: Config = {
         body: '#222222', // All general text as blackish
         header: '#40403B', // All headers as grey
       },
+      gridTemplateRows: {
+        '[auto,auto,1fr]': 'auto auto 1fr',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],

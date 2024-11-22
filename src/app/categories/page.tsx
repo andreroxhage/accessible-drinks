@@ -24,7 +24,7 @@ export default function Categories() {
               </p>
             </div>
 
-            <div className="sm:ml-4">
+            <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-secondary-pink-darker"

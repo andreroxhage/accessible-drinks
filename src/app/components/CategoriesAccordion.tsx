@@ -27,7 +27,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
         <button
           type="button"
           onClick={onToggle}
-          className="flex w-full items-center justify-between px-4 py-4 text-left text-body hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+          className="flex w-full items-center justify-between px-4 py-4 text-left text-body hover:bg-gray-50"
           aria-expanded={isOpen}
           aria-controls={contentId}
           id={headingId}

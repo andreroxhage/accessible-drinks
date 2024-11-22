@@ -1,15 +1,20 @@
-import cache from './cache';
+'use client';
+import { Drink } from '../types';
+import { getCachedSearchResults, setCachedSearchResults } from './cache';
 import fetchJson from './fetchJson';
 
-export default async function searchLoader(query: string): Promise<any[]> {
-  return (
-    cache.get(query) ||
-    fetchJson(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`
-    ).then(res => {
-      const drinks = res.drinks;
-      cache.set(query, drinks);
-      return drinks;
-    })
+export default async function searchLoader(query: string): Promise<Drink[]> {
+  // Check cache first
+  const cachedResult = getCachedSearchResults(query);
+  if (cachedResult) return cachedResult;
+
+  // Fetch from API if not in cache
+  const res = await fetchJson(
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`
   );
+
+  // Store in cache and return
+  const drinks = res.drinks || [];
+  setCachedSearchResults(query, drinks);
+  return drinks;
 }

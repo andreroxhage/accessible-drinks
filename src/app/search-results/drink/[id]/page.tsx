@@ -1,5 +1,5 @@
-import SingleDrink from '@/app/components/SingleDrink';
 import singleDrinkLoader from '@/app/utils/singleDrinkLoader';
+import SingleDrink from '@/app/components/SingleDrink';
 
 export default async function SingleDrinkPage({
   params,
@@ -8,9 +8,9 @@ export default async function SingleDrinkPage({
 }) {
   const drink = await singleDrinkLoader(params.id);
 
-  return (
-    <div>
-      <SingleDrink drinkId={drink} />
-    </div>
-  );
+  if (!drink) {
+    return <div>Drink not found</div>;
+  } else {
+    return <SingleDrink drink={drink} />;
+  }
 }
