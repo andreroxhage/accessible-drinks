@@ -167,7 +167,12 @@ export default function SearchResultsPage({
           {/* Sort Dropdown */}
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+              <MenuButton
+                className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="Sort options"
+              >
                 Sort: {selectedSort.name}
                 <ChevronDownIcon
                   aria-hidden="true"
@@ -176,21 +181,30 @@ export default function SearchResultsPage({
               </MenuButton>
             </div>
 
-            <MenuItems className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 bg-white">
-              <div className="py-1">
+            <MenuItems
+              className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 bg-white focus:outline-none"
+              aria-orientation="vertical"
+            >
+              <div className="py-1" role="none">
                 {sortOptions.map(option => (
                   <MenuItem key={option.name}>
-                    <button
-                      onClick={() => setSelectedSort(option)}
-                      className={classNames(
-                        selectedSort.name === option.name
-                          ? 'font-medium text-gray-900'
-                          : 'text-gray-500',
-                        'block w-full text-left px-4 py-2 text-sm'
-                      )}
-                    >
-                      {option.name}
-                    </button>
+                    {({ active }) => (
+                      <button
+                        onClick={() => setSelectedSort(option)}
+                        className={classNames(
+                          selectedSort.name === option.name
+                            ? 'font-medium text-gray-900'
+                            : 'text-gray-500',
+                          active ? 'bg-gray-100' : '',
+                          'block w-full text-left px-4 py-2 text-sm'
+                        )}
+                        role="menuitem"
+                        tabIndex={-1}
+                        aria-selected={selectedSort.name === option.name}
+                      >
+                        {option.name}
+                      </button>
+                    )}
                   </MenuItem>
                 ))}
               </div>
