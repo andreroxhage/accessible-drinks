@@ -32,6 +32,14 @@ export default function ResponsiveHeader() {
       className="bg-secondary-pink-lighter shadow"
       role="banner"
     >
+      <div className="relative w-100 px-3 py-1">
+        <a
+          href="#main-content"
+          className="absolute p-4 text-black bg-white m-2 sr-only focus:not-sr-only"
+        >
+          Skip to Main Content
+        </a>
+      </div>
       <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex px-2 lg:px-0">
