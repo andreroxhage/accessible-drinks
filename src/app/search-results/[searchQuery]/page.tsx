@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { use } from 'react';
 import SearchResult from '@/app/components/SearchResults';
 import searchLoader from '@/app/utils/searchLoader';
@@ -39,6 +39,7 @@ export default function SearchResultsPage({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedSort, setSelectedSort] = useState(sortOptions[0]);
+  const searchResultsContainerRef = useRef<HTMLDivElement>(null);
   const [filters, setFilters] = useState<
     {
       id: string;
@@ -53,7 +54,6 @@ export default function SearchResultsPage({
     alcoholic: [],
   });
 
-  // Fetch initial data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -96,6 +96,12 @@ export default function SearchResultsPage({
               options: alcoholicOptions,
             },
           ]);
+
+          setTimeout(() => {
+            if (searchResultsContainerRef.current) {
+              searchResultsContainerRef.current.focus();
+            }
+          }, 100);
         }
       } catch (err) {
         setError('No results found');
@@ -156,123 +162,181 @@ export default function SearchResultsPage({
       id="main-content"
       className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen"
     >
-      <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-          {filteredResult.length}{' '}
-          {filteredResult.length === 1 ? 'drink' : 'drinks'} found for "
-          {searchQuery}"{' '}
+      <div
+        className="flex items-baseline justify-between border-b border-gray-200 pb-6"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-gray-900">
+          Search results for "{decodeURIComponent(searchQuery.toString())}"{' '}
         </h1>
 
-        <div className="flex items-center">
-          {/* Sort Dropdown */}
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <MenuButton
-                className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-label="Sort options"
-              >
-                Sort: {selectedSort.name}
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems
-              className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 bg-white focus:outline-none"
-              aria-orientation="vertical"
+        {/* Sort Dropdown */}
+        <Menu
+          as="div"
+          className="relative inline-block text-left"
+          aria-label="Sorting options"
+        >
+          <div>
+            <MenuButton
+              id="sort-button"
+              className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label={`Current sort: ${selectedSort.name}`}
             >
-              <div className="py-1" role="none">
-                {sortOptions.map(option => (
-                  <MenuItem key={option.name}>
-                    {({ active }) => (
-                      <button
-                        onClick={() => setSelectedSort(option)}
-                        className={classNames(
-                          selectedSort.name === option.name
-                            ? 'font-medium text-gray-900'
-                            : 'text-gray-500',
-                          active ? 'bg-gray-100' : '',
-                          'block w-full text-left px-4 py-2 text-sm'
-                        )}
-                        role="menuitem"
-                        tabIndex={-1}
-                        aria-selected={selectedSort.name === option.name}
-                      >
-                        {option.name}
-                      </button>
-                    )}
-                  </MenuItem>
-                ))}
-              </div>
-            </MenuItems>
-          </Menu>
-        </div>
+              Sort: {selectedSort.name}
+              <ChevronDownIcon
+                aria-hidden="true"
+                className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
+              />
+            </MenuButton>
+          </div>
+
+          <MenuItems
+            aria-labelledby="sort-button"
+            className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 bg-white focus:outline-none"
+            aria-orientation="vertical"
+          >
+            <div className="py-1" role="none">
+              {sortOptions.map(option => (
+                <MenuItem key={option.name}>
+                  {({ active }) => (
+                    <button
+                      onClick={() => setSelectedSort(option)}
+                      className={classNames(
+                        selectedSort.name === option.name
+                          ? 'font-medium text-gray-900'
+                          : 'text-gray-500',
+                        active ? 'bg-gray-100' : '',
+                        'block w-full text-left px-4 py-2 text-sm'
+                      )}
+                      role="menuitem"
+                      tabIndex={-1}
+                      aria-selected={selectedSort.name === option.name}
+                    >
+                      {option.name}
+                    </button>
+                  )}
+                </MenuItem>
+              ))}
+            </div>
+          </MenuItems>
+        </Menu>
       </div>
 
-      <section className="pb-24 pt-6">
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-          {/* Filters */}
-          <form className="hidden lg:block">
-            {filters.map(section => (
-              <Disclosure
-                key={section.id}
-                as="div"
-                className="border border-gray-200 py-6 bg-white hover:bg-gray-50 rounded-lg p-4 mb-4"
-              >
-                <h3 className="-my-3 flow-root">
-                  <DisclosureButton className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500">
-                    <span className="font-medium text-gray-900">
-                      {section.name}
-                    </span>
-                    <span className="ml-6 flex items-center">
-                      <PlusIcon
-                        aria-hidden="true"
-                        className="size-5 group-data-[open]:hidden"
+      <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 pt-6">
+        {/* Filters */}
+        <form
+          className="col-span-4 lg:col-span-1"
+          role="search"
+          aria-label="Filter drinks"
+        >
+          {filters.map(section => (
+            <Disclosure
+              key={section.id}
+              as="div"
+              className="border border-gray-200 py-6 bg-white hover:bg-gray-50 rounded-lg p-4 mb-4"
+            >
+              <legend className="sr-only">{section.name} filters</legend>
+              <h3 className="-my-3 flow-root">
+                <DisclosureButton className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500">
+                  <span className="font-medium text-gray-900">
+                    {section.name}
+                  </span>
+                  <span className="ml-6 flex items-center">
+                    <PlusIcon
+                      aria-hidden="true"
+                      className="size-5 group-data-[open]:hidden"
+                    />
+                    <MinusIcon
+                      aria-hidden="true"
+                      className="size-5 [.group:not([data-open])_&]:hidden"
+                    />
+                  </span>
+                </DisclosureButton>
+              </h3>
+              <DisclosurePanel className="pt-6">
+                <div className="space-y-4">
+                  {section.options.map(option => (
+                    <div key={option.value} className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id={option.value}
+                        checked={selectedFilters[section.id].includes(
+                          option.value
+                        )}
+                        onChange={() =>
+                          handleFilterChange(section.id, option.value)
+                        }
+                        className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
-                      <MinusIcon
-                        aria-hidden="true"
-                        className="size-5 [.group:not([data-open])_&]:hidden"
-                      />
-                    </span>
-                  </DisclosureButton>
-                </h3>
-                <DisclosurePanel className="pt-6">
-                  <div className="space-y-4">
-                    {section.options.map(option => (
-                      <div key={option.value} className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id={option.value}
-                          checked={selectedFilters[section.id].includes(
-                            option.value
-                          )}
-                          onChange={() =>
-                            handleFilterChange(section.id, option.value)
-                          }
-                          className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                        />
-                        <label
-                          htmlFor={option.value}
-                          className="ml-3 text-sm text-gray-600"
-                        >
-                          {option.label}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </DisclosurePanel>
-              </Disclosure>
-            ))}
-          </form>
+                      <label
+                        htmlFor={option.value}
+                        className="ml-3 text-sm text-gray-600"
+                      >
+                        {option.label}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </DisclosurePanel>
+            </Disclosure>
+          ))}
+        </form>
 
-          {/* Results Grid */}
-          <SearchResult drinks={filteredResult} searchQuery={searchQuery} />
+        <div
+          ref={searchResultsContainerRef}
+          tabIndex={-1}
+          role="grid"
+          aria-live="polite"
+          aria-label={`Search results for ${decodeURIComponent(searchQuery.toString())}`}
+          className="lg:col-span-3 col-span-4"
+        >
+          {/* Loading state */}
+          {loading && (
+            <div
+              role="status"
+              aria-live="assertive"
+              className="col-span-4 h-screen flex items-center justify-center"
+            >
+              <span className="sr-only">Loading search results...</span>
+              <div className="loader" aria-hidden="true"></div>
+            </div>
+          )}
+
+          {/* Error state with improved messaging */}
+          {error && (
+            <div
+              role="alert"
+              aria-live="assertive"
+              className="col-span-4 bg-red-50 p-4 rounded-md"
+            >
+              <p className="text-red-800">{error}</p>
+              <p className="text-sm text-red-600 mt-2">
+                Try adjusting your search terms or filters
+              </p>
+            </div>
+          )}
+
+          {/* Results */}
+          {!loading && !error && (
+            <div
+              aria-labelledby="search-results-count"
+              aria-describedby="search-results-description"
+            >
+              <h2 id="search-results-count" className="sr-only">
+                {filteredResult.length} drinks found
+              </h2>
+              <p id="search-results-description" className="sr-only">
+                Use the sort and filter options to refine your search
+              </p>
+
+              <SearchResult drinks={filteredResult} searchQuery={searchQuery} />
+            </div>
+          )}
         </div>
-      </section>
+      </div>
     </main>
   );
 }
