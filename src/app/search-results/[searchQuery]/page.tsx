@@ -167,7 +167,7 @@ export default function SearchResultsPage({
         aria-live="polite"
         aria-atomic="true"
       >
-        <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-gray-900">
+        <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-header">
           Search results for "{decodeURIComponent(searchQuery.toString())}"{' '}
         </h1>
 
@@ -269,7 +269,7 @@ export default function SearchResultsPage({
                         onChange={() =>
                           handleFilterChange(section.id, option.value)
                         }
-                        className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        className="size-4 rounded border-gray-300 text-primary-pink-darker"
                       />
                       <label
                         htmlFor={option.value}
@@ -284,7 +284,19 @@ export default function SearchResultsPage({
             </Disclosure>
           ))}
         </form>
-
+        {/* Error state with improved messaging */}
+        {error && (
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="col-span-4 bg-red-50 p-4 rounded-md"
+          >
+            <p className="text-body">{error}</p>
+            <p className="text-sm text-gray-700 mt-2">
+              Try adjusting your search terms or filters
+            </p>
+          </div>
+        )}
         <div
           ref={searchResultsContainerRef}
           tabIndex={-1}
@@ -302,20 +314,6 @@ export default function SearchResultsPage({
             >
               <span className="sr-only">Loading search results...</span>
               <div className="loader" aria-hidden="true"></div>
-            </div>
-          )}
-
-          {/* Error state with improved messaging */}
-          {error && (
-            <div
-              role="alert"
-              aria-live="assertive"
-              className="col-span-4 bg-red-50 p-4 rounded-md"
-            >
-              <p className="text-red-800">{error}</p>
-              <p className="text-sm text-red-600 mt-2">
-                Try adjusting your search terms or filters
-              </p>
             </div>
           )}
 

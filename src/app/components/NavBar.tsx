@@ -62,7 +62,7 @@ export default function ResponsiveHeader() {
                   href={item.href}
                   className={`inline-flex items-center border-b-2 px-1 pt-1 text-base font-medium ${
                     isCurrent(item.href)
-                      ? 'border-indigo-500 text-gray-900'
+                      ? 'border-secondary-pink-darker text-gray-900'
                       : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                   }`}
                   aria-current={isCurrent(item.href) ? 'page' : undefined}
@@ -97,7 +97,7 @@ export default function ResponsiveHeader() {
                     name="search"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm/6"
                     placeholder="Search for a drink"
                     aria-controls="search-results"
                     aria-describedby="search-description"
@@ -109,7 +109,7 @@ export default function ResponsiveHeader() {
           </div>
           <div className="flex items-center lg:hidden">
             {/* Mobile menu button */}
-            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary-pink-darker">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
               <Bars3Icon
@@ -138,7 +138,7 @@ export default function ResponsiveHeader() {
               aria-current={isCurrent(item.href) ? 'page' : undefined}
               className={`block border-l-4 py-2 px-8 text-base font-medium ${
                 isCurrent(item.href)
-                  ? 'bg-indigo-50 border-indigo-500 text-indigo-700'
+                  ? 'bg-indigo-50 border-secondary-pink-darker text-pink-darker'
                   : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800'
               }`}
             >
