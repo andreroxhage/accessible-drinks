@@ -19,6 +19,8 @@ const config: Config = {
           pink: '#FFC0CB',
           'pink-darker': '#997379',
           'pink-lighter': '#fff7fa',
+          orange: '#FFA500',
+          "orange-ligher": '#FDBA88',
         },
         accent: {
           green: '#BCD3BB',
