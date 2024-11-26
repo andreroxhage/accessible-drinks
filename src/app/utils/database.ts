@@ -1,12 +1,8 @@
+import { Drink } from "../types";
+
 export type Category = {
     title:string;
 }
-export type Drink = {
-    strDrink:string;
-    strDrinkThumb:string;
-    idDrink:number;
-}
-
 const BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/";
 
 async function apiFetch<T>(path:string): Promise<T> {
@@ -19,12 +15,13 @@ async function apiFetch<T>(path:string): Promise<T> {
     return await response.json() as T;
 }
 
-export async function getDrinksByCategory(category:Category) {
-    return await apiFetch<{drinks:{strDrink:string, strDrinkThumb:string, idDrink:number}[]}>('filter.php?c=' + category.title);
+export async function getDrinksByCategory(category:string) {
+    var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?c=' + category);
+    return drinks;
 }
-
 export async function getDrinksByIngredient(ingredient:string) {
-    return await apiFetch<{drinks:{strDrink:string, strDrinkThumb:string, idDrink:number}[]}>('filter.php?i=' + ingredient);
+    var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?i=' + ingredient); 
+    return drinks;
 }
 
 export async function getDrinkByName(name:string){

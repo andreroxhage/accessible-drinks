@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 const navItems = [
   { label: 'Home', href: '/', current: true },
+  {label: 'Explore', href:'/explore', current: false},
   { label: 'Categories', href: '/categories', current: false },
 ];
 
