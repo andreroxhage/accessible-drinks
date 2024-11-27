@@ -30,9 +30,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary-pink-lighter text-body`}
       >
-        <a href="#main-content" className="sr-only">
-          Skip to Main Content
-        </a>
         <Navbar />
         {children}
         <Footer />

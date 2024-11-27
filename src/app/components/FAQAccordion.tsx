@@ -8,6 +8,9 @@ interface AccordionItemProps {
   isOpen: boolean;
   onToggle: () => void;
   id: string;
+  categoryId: string;
+  index: number;
+  totalItems: number;
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({
@@ -16,8 +19,12 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   isOpen,
   onToggle,
   id,
+  categoryId,
+  index,
+  totalItems,
 }) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [contentHeight, setContentHeight] = useState(0);
 
   useEffect(() => {
@@ -29,18 +36,71 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
   const headingId = `accordion-heading-${id}`;
   const contentId = `accordion-content-${id}`;
 
+  // Handle keyboard navigation within accordion items
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowUp':
+        e.preventDefault();
+        const prevButton = buttonRef.current
+          ?.closest('div')
+          ?.previousElementSibling?.querySelector('button');
+        if (prevButton) {
+          (prevButton as HTMLButtonElement).focus();
+        }
+        break;
+      case 'ArrowDown':
+        e.preventDefault();
+        const nextButton = buttonRef.current
+          ?.closest('div')
+          ?.nextElementSibling?.querySelector('button');
+        if (nextButton) {
+          (nextButton as HTMLButtonElement).focus();
+        }
+        break;
+      case 'Home':
+        e.preventDefault();
+        const firstButton = buttonRef.current
+          ?.closest('[role="region"]')
+          ?.querySelector('button');
+        if (firstButton) {
+          (firstButton as HTMLButtonElement).focus();
+        }
+        break;
+      case 'End':
+        e.preventDefault();
+        const allButtons = buttonRef.current
+          ?.closest('[role="region"]')
+          ?.querySelectorAll('button');
+        if (allButtons?.length) {
+          (allButtons[allButtons.length - 1] as HTMLButtonElement).focus();
+        }
+        break;
+    }
+  };
+
   return (
-    <div className="border-b border-gray-200 last:border-b-0">
-      <h3>
+    <div
+      className="border-b border-gray-200 last:border-b-0"
+      role="presentation"
+    >
+      <h4>
         <button
+          ref={buttonRef}
           type="button"
           onClick={onToggle}
-          className="flex w-full items-center justify-between px-4 py-4 text-left text-body hover:bg-gray-50"
+          onKeyDown={handleKeyDown}
+          className="flex w-full items-center justify-between px-4 py-4 text-left text-body hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
           aria-expanded={isOpen}
           aria-controls={contentId}
           id={headingId}
+          aria-disabled={false}
         >
-          <span className="text-lg font-medium">{title}</span>
+          <span className="text-lg font-medium">
+            <span className="sr-only">
+              Question {index + 1} of {totalItems} in {categoryId}:
+            </span>
+            {title}
+          </span>
           <ChevronDownIcon
             className={`h-5 w-5 transform transition-transform duration-200 ${
               isOpen ? 'rotate-180' : ''
@@ -48,7 +108,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
             aria-hidden="true"
           />
         </button>
-      </h3>
+      </h4>
       <div
         id={contentId}
         ref={contentRef}
@@ -59,7 +119,10 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           maxHeight: `${contentHeight}px`,
         }}
       >
-        <div className="px-4 pb-4 pt-2 text-gray-600">
+        <div
+          className="px-4 pb-4 pt-2 text-gray-600"
+          tabIndex={isOpen ? 0 : -1}
+        >
           <p className="prose max-w-xl">{content}</p>
         </div>
       </div>
@@ -69,11 +132,38 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
 
 const FAQAccordion: React.FC = () => {
   const [openSections, setOpenSections] = useState<string[]>([]);
+  const accordionRef = useRef<HTMLDivElement>(null);
 
   const toggleSection = (id: string) => {
     setOpenSections(prev =>
       prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
     );
+  };
+
+  // Handle category navigation
+  const handleCategoryKeyDown = (e: React.KeyboardEvent) => {
+    if (e.ctrlKey || e.metaKey) {
+      switch (e.key) {
+        case 'PageUp':
+          e.preventDefault();
+          const prevCategory = (e.target as HTMLElement).closest(
+            'div'
+          )?.previousElementSibling;
+          if (prevCategory) {
+            (prevCategory.querySelector('h2') as HTMLElement)?.focus();
+          }
+          break;
+        case 'PageDown':
+          e.preventDefault();
+          const nextCategory = (e.target as HTMLElement).closest(
+            'div'
+          )?.nextElementSibling;
+          if (nextCategory) {
+            (nextCategory.querySelector('h2') as HTMLElement)?.focus();
+          }
+          break;
+      }
+    }
   };
 
   const faqCategories = [
@@ -168,35 +258,58 @@ const FAQAccordion: React.FC = () => {
   ];
 
   return (
-    <div
+    <section
+      ref={accordionRef}
       className="space-y-6"
       role="region"
-      aria-label="Frequently Asked Questions"
+      aria-labelledby="faq-heading"
+      aria-live="polite"
     >
-      {faqCategories.map(category => (
+      <h2 id="faq-heading" className="text-lg font-semibold">
+        Frequently Asked Questions
+      </h2>
+      <div className="sr-only" role="note">
+        Use arrow keys to navigate between questions. Use Control + Page Up/Down
+        to navigate between categories. Press Enter or Space to expand/collapse
+        answers.
+      </div>
+
+      {faqCategories.map((category, categoryIndex) => (
         <div
           key={category.category}
           className="divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white shadow-sm"
+          role="region"
+          aria-labelledby={`category-${category.category.toLowerCase().replace(/\s+/g, '-')}`}
+          onKeyDown={handleCategoryKeyDown}
         >
-          <h2
-            className="bg-gray-100 px-4 py-3 text-xl font-semibold"
+          <h3
+            className="bg-gray-100 px-4 py-3 text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
             id={`category-${category.category.toLowerCase().replace(/\s+/g, '-')}`}
+            tabIndex={0}
           >
             {category.category}
-          </h2>
-          {category.items.map(item => (
-            <AccordionItem
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              content={item.content}
-              isOpen={openSections.includes(item.id)}
-              onToggle={() => toggleSection(item.id)}
-            />
-          ))}
+          </h3>
+          {category.items.map(
+            (
+              item: { id: string; title: string; content: string },
+              index: number
+            ) => (
+              <AccordionItem
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                content={item.content}
+                isOpen={openSections.includes(item.id)}
+                onToggle={() => toggleSection(item.id)}
+                categoryId={category.category}
+                index={index}
+                totalItems={category.items.length}
+              />
+            )
+          )}
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 

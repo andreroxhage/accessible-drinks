@@ -7,6 +7,7 @@ export default async function SingleDrinkPage({
   params: { id: string };
 }) {
   const drink = await singleDrinkLoader(params.id);
+  console.log(drink);
 
   if (!drink) {
     return <div>Drink not found</div>;

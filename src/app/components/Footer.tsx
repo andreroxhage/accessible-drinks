@@ -50,7 +50,7 @@ export default function Footer() {
                       href="https://www.thecocktaildb.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-white underline"
+                      className="text-secondary-orange-ligher hover:text-secondary-orange underline"
                     >
                       TheCocktailDB API
                     </a>

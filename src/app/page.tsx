@@ -5,21 +5,32 @@ export default function Home() {
   return (
     <main
       id="main-content"
+      aria-labelledby="page-title"
       className="container mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32"
     >
       <div className=" grid grid-cols-1 lg:grid-cols-12 justify-between items-start gap-8 ">
         {/* Content Section - 2/3 width (8 columns) */}
         <div className="flex flex-col items-start justify-start lg:col-span-8">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-header font-semibold tracking-tight">
+          <h1
+            id="page-title"
+            className="text-4xl sm:text-5xl lg:text-6xl text-header font-semibold tracking-tight"
+          >
             Accessibility in Every Sip
           </h1>
-          <p className="mt-8 text-pretty text-body text-base sm:text-lg lg:text-xl/8 font-medium max-w-3xl">
+          <p
+            id="mission-description"
+            className="mt-8 text-pretty text-body text-base sm:text-lg lg:text-xl/8 font-medium max-w-3xl"
+          >
             Our mission is to make every drink accessible to everyone,
             regardless of ability. Join us in raising a glass to accessibility
             and inclusion, one sip at a time.
           </p>
-          <div className="flex flex-row items-end gap-4">
+          <div
+            className="flex flex-row items-end gap-4"
+            aria-label="Accessibility Icons"
+          >
             <svg
+              aria-label="Accessibility Icon: Adaptive Drinking Glass"
               xmlns="http://www.w3.org/2000/svg"
               className="w-full max-w-prose h-auto text-secondary-pink-darker"
               viewBox="0 0 64 64"
@@ -33,6 +44,7 @@ export default function Home() {
               <rect x="28" y="22" width="8" height="6" rx="2" />
             </svg>
             <svg
+              aria-label="Accessibility Icon: Inclusive Drink Design"
               xmlns="http://www.w3.org/2000/svg"
               className="w-full max-w-prose h-auto text-secondary-pink-darker"
               viewBox="0 0 64 64"
@@ -50,7 +62,13 @@ export default function Home() {
         </div>
 
         {/* Accordion Section - 1/3 width (4 columns) */}
-        <div className="w-full max-w-2xl lg:max-w-none lg:col-span-4">
+        <div
+          className="w-full max-w-2xl lg:max-w-none lg:col-span-4"
+          aria-labelledby="categories-section-title"
+        >
+          <h2 id="categories-section-title" className="sr-only">
+            Drink Categories
+          </h2>
           <Accordion />
         </div>
       </div>
