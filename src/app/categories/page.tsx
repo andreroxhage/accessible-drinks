@@ -58,17 +58,6 @@ export default async function Categories() {
           </section>
         </div>
         <div>
-            <form className='container'>
-                <ul className='flex'>
-                    {spirits.map((e,i) => {
-                        return <li key={i}>
-                            <input id={e.strIngredient1} type='checkbox'/>
-                            <label htmlFor={e.strIngredient1}>{e.strIngredient1}</label>
-                        </li>
-                    })}
-                </ul>
-                <input className='button' type='submit' value={"Confirm"}/>
-            </form>
         </div>
       </main>
     </>
