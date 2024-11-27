@@ -14,18 +14,30 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
     return `${drink.strDrink} (${drink.strGlass})${tags}`;
   };
 
+  const getCardDescription = (drink: Drink) => {
+    const ingredients = [];
+    for (let i = 1; i <= 15; i++) {
+      const ingredient = drink[`strIngredient${i}` as keyof Drink];
+      if (ingredient) ingredients.push(ingredient);
+    }
+    return `is served in a ${drink.strGlass}. It is ${drink.strAlcoholic ? 'an alcoholic' : 'a non-alcoholic'} beverage. Ingredients: ${ingredients.join(', ')}.`;
+  };
+
   return (
-    <div className="col-span-3">
+    <div
+      role="grid"
+      aria-label={`Search results for ${searchQuery}`}
+    >
       {drinks.length === 0 ? (
-        <div className="text-center text-lg text-body">No results</div>
+        <div className="text-center text-lg text-body"></div>
       ) : (
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-          {drinks.map(drink => (
+          {drinks.map((drink, index) => (
             <Link
               href={`/search-results/drink/${drink.idDrink}`}
               key={drink.idDrink}
               className="group relative bg-white shadow-md rounded-lg overflow-hidden focus:ring-2 focus:ring-offset-2"
-              aria-label={`View details for ${drink.strDrink}`}
+              aria-labelledby={`drink-title-${drink.idDrink} drink-description-${drink.idDrink}`}
             >
               <div className="aspect-square w-full relative">
                 <Image
@@ -33,19 +45,30 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
                   alt={getAltText(drink)}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   fill
+                  priority={index < 4}
                   className="object-cover group-hover:opacity-75 transition-opacity"
                 />
               </div>
 
               <div className="p-4">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-lg font-semibold text-header">
+                  <h3
+                    id={`drink-title-${drink.idDrink}`}
+                    className="text-lg font-semibold text-header mb-2"
+                  >
                     {drink.strDrink}
                   </h3>
                 </div>
 
-                <div className="text-sm text-body">
-                  <p>{drink.strCategory}</p>
+                <div
+                  id={`drink-description-${drink.idDrink}`}
+                  className="text-sm text-body"
+                >
+                  <span className="sr-only">{getCardDescription(drink)}</span>
+                  <p aria-hidden="true">{drink.strCategory}</p>
+                  {drink.strAlcoholic && (
+                    <p aria-hidden="true">{drink.strAlcoholic}</p>
+                  )}
                 </div>
               </div>
             </Link>
