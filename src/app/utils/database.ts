@@ -27,3 +27,7 @@ export async function getDrinksByIngredient(ingredient:string) {
 export async function getDrinkByName(name:string){
     return await apiFetch<{drink:{}[]}>('search.php?s=' + name);
 }
+export async function getDrinks() {
+    var {drinks} = await apiFetch<{drinks:Drink[]}>("filter.php?a=Alcoholic");
+    return drinks;
+}

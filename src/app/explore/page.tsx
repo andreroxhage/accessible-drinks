@@ -18,9 +18,13 @@ import {
 
 import categories from "../categories.json";
 import spirits from "../spirits.json";
-import { getDrinksByCategory, getDrinksByIngredient } from '../utils/database';
+import { getDrinksByCategory, getDrinksByIngredient, getDrinks } from '../utils/database';
 import { DrinkFilterResult } from '../components/DrinkFilterResult';
 import { Drink } from '../types';
+
+interface DrinkMap {
+    [id:string]:Drink
+}
 
 const sortOptions = [
   { name: 'Alphabetical', key: 'strDrink', ascending: true },
@@ -84,29 +88,50 @@ export default function ExplorePage({
     setFilters(filtersList);
   },[])
   useEffect(() => {
+    
     const fetchByFilters = async () => {
-        var drinkList:Drink[] = [];
-
+        var drinkList:DrinkMap = {};
+        var categoryIds:Set<string> = new Set<string>();
         for (var option of selectedFilters['category']){
             var drinks = await getDrinksByCategory(option);
             drinks.forEach(drink => {
-                drinkList.push(drink);
+                categoryIds.add(drink.idDrink);
+                drinkList[drink.idDrink] = drink;
             })
         }
 
-        var spirits:Set<Drink> = new Set<Drink>();
+        var spiritsIds:Set<string> = new Set<string>();
 
         for (var option of selectedFilters['spirit']){
             var drinks = await getDrinksByIngredient(option);
 
-            drinkList.filter(drink => !drinks.includes(drink)).forEach(drink => {
-                spirits.add(drink);
+            drinks.forEach(drink => {
+                spiritsIds.add(drink.idDrink);
+                drinkList[drink.idDrink] = drink;
             });
+        }
+        
 
+        if(spiritsIds.size == 0){
+            if(categoryIds.size == 0){
+                var drinks:Drink[] = await getDrinks();
+                setFilteredResult(drinks);
+            }
+            else{
+                setFilteredResult(Array.from(categoryIds).map(id => {
+                    return drinkList[id]
+                }));
+            }
+        }else if(categoryIds.size == 0){
+            setFilteredResult(Array.from(spiritsIds).map(id => {
+                return drinkList[id];
+            }));
+        }else{
+            setFilteredResult(Array.from(spiritsIds.intersection(categoryIds)).map(id => {
+                return drinkList[id];
+            }));
         }
 
-
-        setFilteredResult(Array.from(spirits));
     }   
 
     fetchByFilters();
