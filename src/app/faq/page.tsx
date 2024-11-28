@@ -10,7 +10,7 @@ export default function Categories() {
         className="container mx-auto grid grid-cols-1 lg:grid-cols-12 justify-between items-start gap-8 px-6 py-16 sm:py-24 lg:px-8 lg:py-32"
       >
         {/* Page Header Section */}
-        <div className="flex flex-col items-start justify-start  lg:col-span-8">
+        <div className="flex flex-col items-start justify-start col-span-12 lg:col-span-8">
           {/* Page Header Section */}
           <div className="mb-12 md:mb-16 flex flex-col sm:flex-row sm:items-center gap-6">
             <div>
@@ -29,8 +29,8 @@ export default function Categories() {
         </div>
 
         {/* Accordion Section - 1/3 width (4 columns) */}
-        <div className="lg:col-span-4 flex justify-center items-center py-8">
-            <svg
+        <div className="col-span-12 lg:col-span-4 flex justify-center items-center py-2 lg:py-8">
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 text-secondary-pink-darker"
             viewBox="0 0 64 64"
@@ -39,11 +39,11 @@ export default function Categories() {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            >
+          >
             <path d="M16 16 L32 40 L48 16 Z" />
             <line x1="32" y1="40" x2="32" y2="56" />
             <line x1="24" y1="56" x2="40" y2="56" />
-            </svg>
+          </svg>
         </div>
         <div className="col-span-12">
           <FAQAccordion />
