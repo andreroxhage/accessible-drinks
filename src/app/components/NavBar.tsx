@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 const navItems = [
   { label: 'Home', href: '/', current: true },
-  { label: 'Categories', href: '/categories', current: false },
+  { label: 'FAQ', href: '/faq', current: false },
 ];
 
 export default function ResponsiveHeader() {

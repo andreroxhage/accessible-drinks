@@ -3,7 +3,7 @@ import Image from 'next/image';
 const navigation = {
   solutions: [
     { name: 'Home', href: '/' },
-    { name: 'Categories', href: '/categories' },
+    { name: 'FAQ', href: '/faq' },
   ],
 };
 
