@@ -265,9 +265,6 @@ const FAQAccordion: React.FC = () => {
       aria-labelledby="faq-heading"
       aria-live="polite"
     >
-      <h2 id="faq-heading" className="text-lg font-semibold">
-        Frequently Asked Questions
-      </h2>
       <div className="sr-only" role="note">
         Use arrow keys to navigate between questions. Use Control + Page Up/Down
         to navigate between categories. Press Enter or Space to expand/collapse
