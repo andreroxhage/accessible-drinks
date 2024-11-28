@@ -225,11 +225,6 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
       <aside className="mt-12" aria-labelledby="recent-drinks-heading">
         <RecentDrinksRow />
       </aside>
-
-      {/* FAQ Section */}
-      <aside className="mt-12" aria-labelledby="faq-heading">
-        <FAQAccordion />
-      </aside>
     </main>
   );
 }
