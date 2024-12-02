@@ -56,10 +56,12 @@ export default function ResponsiveHeader() {
             <div
               className="hidden lg:ml-6 lg:flex lg:space-x-8"
               role="navigation"
+              id="nav"
             >
-              {navItems.map(item => (
+              {navItems.map((item, index) => (
                 <a
                   key={item.href}
+                  id={`nav_${index}`}
                   href={item.href}
                   className={`inline-flex items-center border-b-2 px-1 pt-1 text-base font-medium ${
                     isCurrent(item.href)
