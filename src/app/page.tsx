@@ -30,7 +30,7 @@ export default function Home() {
             className="my-8 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             aria-label="Explore drinks"
           >
-            Explore drinks
+            Find drinks
           </Link>
         </div>
 

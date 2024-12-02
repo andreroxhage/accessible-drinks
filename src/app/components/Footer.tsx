@@ -17,7 +17,10 @@ export default function Footer() {
           e.preventDefault();
           const searchElement = document.getElementById('search-input');
           if (searchElement) {
-            console.log('searchElement', searchElement);
+            searchElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center',
+            });
             searchElement.focus();
           }
         },
@@ -67,6 +70,8 @@ export default function Footer() {
                       href="https://www.thecocktaildb.com/"
                       target="_blank"
                       rel="noopener noreferrer"
+                      tabIndex={+1} // Ensure the next tab is the navbar
+                      aria-label="TheCocktailDB API - External Link"
                       className="text-secondary-orange-ligher hover:text-secondary-orange underline"
                     >
                       TheCocktailDB API
