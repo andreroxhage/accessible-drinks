@@ -52,19 +52,19 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
       <div className="skip-links">
         <a
           href="#characteristics"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white p-4 rounded shadow"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
         >
           Skip to Drink Characteristics
         </a>
         <a
           href="#ingredients"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white p-4 rounded shadow"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
         >
           Skip to Ingredients
         </a>
         <a
           href="#instructions"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 bg-white p-4 rounded shadow"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
         >
           Skip to Instructions
         </a>
