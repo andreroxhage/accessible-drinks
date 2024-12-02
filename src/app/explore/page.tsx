@@ -61,13 +61,14 @@ export default function ExplorePage({
     spirit:[]
   });
   useEffect(() => {
-    const categoryOptions = categories.map(value => {
+    var categoryOptions = categories.map(value => {
         return {
             value,
             label: value,
             checked: false
         }
     });
+
     const spiritOptions = spirits.map(value => {
         return {
             value,
@@ -86,6 +87,7 @@ export default function ExplorePage({
         options: spiritOptions
     });
     setFilters(filtersList);
+    
   },[])
   useEffect(() => {
     
@@ -133,7 +135,6 @@ export default function ExplorePage({
         }
 
     }   
-
     fetchByFilters();
 
   }, [selectedFilters])
@@ -165,37 +166,7 @@ export default function ExplorePage({
 
         <div className="flex items-center">
           {/* Sort Dropdown */}
-          <Menu as="div" className="relative inline-block text-left">
-            <div>
-              <MenuButton className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                Sort: {selectedSort.name}
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-mr-1 ml-1 size-5 shrink-0 text-gray-400 group-hover:text-gray-500"
-                />
-              </MenuButton>
-            </div>
-
-            <MenuItems className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md shadow-2xl ring-1 ring-black/5 bg-white">
-              <div className="py-1">
-                {sortOptions.map(option => (
-                  <MenuItem key={option.name}>
-                    <button
-                      onClick={() => setSelectedSort(option)}
-                      className={classNames(
-                        selectedSort.name === option.name
-                          ? 'font-medium text-gray-900'
-                          : 'text-gray-500',
-                        'block w-full text-left px-4 py-2 text-sm'
-                      )}
-                    >
-                      {option.name}
-                    </button>
-                  </MenuItem>
-                ))}
-              </div>
-            </MenuItems>
-          </Menu>
+          
         </div>
       </div>
 
