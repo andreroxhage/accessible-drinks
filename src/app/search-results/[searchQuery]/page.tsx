@@ -97,6 +97,7 @@ export default function SearchResultsPage({
             },
           ]);
 
+          // Set focus to the search results container when it is rendered
           setTimeout(() => {
             if (searchResultsContainerRef.current) {
               searchResultsContainerRef.current.focus();
@@ -225,7 +226,7 @@ export default function SearchResultsPage({
         </Menu>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 pt-6">
+      <section className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 pt-6">
         {/* Filters */}
         <form
           className="col-span-4 lg:col-span-1"
@@ -329,12 +330,11 @@ export default function SearchResultsPage({
               <p id="search-results-description" className="sr-only">
                 Use the sort and filter options to refine your search
               </p>
-
               <SearchResult drinks={filteredResult} searchQuery={searchQuery} />
             </div>
           )}
         </div>
-      </div>
+      </section>
     </main>
   );
 }

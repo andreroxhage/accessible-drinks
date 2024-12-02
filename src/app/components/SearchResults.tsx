@@ -5,7 +5,7 @@ import { Drink } from '@/app/types';
 
 interface SearchResultProps {
   drinks: Drink[];
-  searchQuery: string;
+  searchQuery?: string;
 }
 
 const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
@@ -26,7 +26,11 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
   return (
     <div
       role="grid"
-      aria-label={`Search results for ${searchQuery}`}
+      aria-label={
+        searchQuery
+          ? `Search results for ${searchQuery}`
+          : 'Drink search results'
+      }
     >
       {drinks.length === 0 ? (
         <div className="text-center text-lg text-body"></div>

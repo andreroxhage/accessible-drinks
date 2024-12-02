@@ -56,7 +56,7 @@ export default function RecentDrinksRow() {
           {recentDrinks.map((drink, index) => (
             <li
               key={drink.idDrink}
-              className="flex flex-col items-center w-full p-1 gap-2 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
+              className="flex flex-col items-center w-full p-1 gap-2 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500 overflow-x-hidden"
             >
               <Link
                 href={`/search-results/drink/${drink.idDrink}`}
