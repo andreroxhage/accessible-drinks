@@ -78,6 +78,7 @@ export default function ResponsiveHeader() {
               className="w-full max-w-lg lg:max-w-xs"
               role="search"
               aria-label="Site"
+              id="search"
             >
               <form onSubmit={handleSubmit} className="flex gap-4">
                 <div className="relative w-full">
