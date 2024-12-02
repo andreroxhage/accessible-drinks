@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 const navItems = [
   { label: 'Home', href: '/', current: true },
-  {label: 'Explore', href:'/explore', current: false},
+  { label: 'Explore', href: '/explore', current: false },
   { label: 'FAQ', href: '/faq', current: false },
 ];
 
@@ -82,31 +82,41 @@ export default function ResponsiveHeader() {
               aria-label="Site"
               id="search"
             >
-              <form onSubmit={handleSubmit} className="flex gap-4">
-                <div className="relative w-full">
+              <form onSubmit={handleSubmit}>
+                <div className="w-full flex rounded-md border-0 bg-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset p-1">
                   <label htmlFor="search-input" className="sr-only">
                     Search for a drink
                   </label>
-
-                  <div
-                    className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-                    aria-hidden="true"
-                  >
-                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
-                  </div>
-
                   <input
                     id="search-input"
-                    type="search"
-                    name="search"
+                    type="text"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-medium"
+                    className="block w-full py-1.5 px-3 text-gray-900 rounded-md border-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-medium"
                     placeholder="Search for a drink"
                     aria-controls="search-results"
                     aria-describedby="search-description"
                     autoComplete="off"
                   />
+                  <button
+                    type="button"
+                    onClick={handleSubmit}
+                    className="inset-y-0 right-0 flex items-center justify-center p-2"
+                    aria-label="Search"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="h-5 w-5 text-gray-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10.5 3a7.5 7.5 0 105.904 12.258l4.348 4.349a.75.75 0 001.06-1.061l-4.348-4.348A7.5 7.5 0 0010.5 3zm0 1.5a6 6 0 100 12 6 6 0 000-12z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
                 </div>
               </form>
             </div>
