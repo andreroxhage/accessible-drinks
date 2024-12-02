@@ -63,7 +63,7 @@ export default function ResponsiveHeader() {
                   key={item.href}
                   id={`nav_${index}`}
                   href={item.href}
-                  className={`inline-flex items-center border-b-2 px-1 pt-1 text-base font-medium ${
+                  className={`inline-flex items-center border-b-2 px-1 pt-1 text-medium font-medium ${
                     isCurrent(item.href)
                       ? 'border-secondary-pink-darker text-gray-900'
                       : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
@@ -101,7 +101,7 @@ export default function ResponsiveHeader() {
                     name="search"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
-                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-sm/6"
+                    className="block w-full rounded-md border-0 bg-white py-1.5 pl-10 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset  sm:text-medium"
                     placeholder="Search for a drink"
                     aria-controls="search-results"
                     aria-describedby="search-description"
