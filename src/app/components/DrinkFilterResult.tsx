@@ -14,7 +14,7 @@ export const DrinkFilterResult:React.FC<DrinkFilterResultsProps> = ({ drinks }) 
         {drinks.length === 0 ? (
           <div className="text-center text-lg text-body">No results</div>
         ) : (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div aria-live="polite" className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {drinks.map(drink => (
               <Link
                 href={`/search-results/drink/${drink.idDrink}`}
