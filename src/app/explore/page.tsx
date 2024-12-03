@@ -10,6 +10,9 @@ import { PlusIcon, MinusIcon } from '@heroicons/react/20/solid';
 
 import categories from '../categories.json';
 import spirits from '../spirits.json';
+import glasses from '../glass.json'
+import alcoholic from '../alcoholic.json'
+
 import {
   getDrinksByCategory,
   getDrinksByIngredient,
@@ -21,12 +24,6 @@ import SearchResult from '../components/SearchResults';
 interface DrinkMap {
   [id: string]: Drink;
 }
-
-const sortOptions = [
-  { name: 'Alphabetical', key: 'strDrink', ascending: true },
-  { name: 'Alcoholic First', key: 'strAlcoholic', ascending: true },
-  { name: 'Category', key: 'strCategory', ascending: true },
-];
 
 export default function ExplorePage({
   params,
@@ -48,6 +45,7 @@ export default function ExplorePage({
     category: [],
     alcoholic: [],
     spirit: [],
+    glass:[]
   });
   const searchResultsContainerRef = useRef<HTMLDivElement>(null);
 
@@ -60,33 +58,52 @@ export default function ExplorePage({
   }, []);
 
   useEffect(() => {
-    var categoryOptions = categories.map(value => {
-      return {
-        value,
-        label: value,
-        checked: false,
-      };
-    });
-
-    const spiritOptions = spirits.map(value => {
-      return {
-        value,
-        label: value,
-        checked: false,
-      };
-    });
     var filtersList = [
-      {
-        id: 'category',
-        name: 'Category',
-        options: categoryOptions,
-      },
+        {
+            id: 'alcoholic',
+            name: 'Alcoholic',
+            options: alcoholic.sort((a,b) => a.localeCompare(b)).map(value => {
+                return {
+                    value,
+                    label: value,
+                    checked: false
+                } 
+            }),
+
+        },
+        {
+            id: 'category',
+            name: 'Category',
+            options: categories.sort((a,b) => a.localeCompare(b)).map(value => {
+                return {
+                value,
+                label: value,
+                checked: false,
+                };
+            }),
+        },{
+            id: 'spirit',
+            name: 'Spirit',
+            options: spirits.sort((a,b) => a.localeCompare(b)).map(value => {
+                return {
+                value,
+                label: value,
+                checked: false,
+                };
+            }),
+        },{
+            id:'glass',
+            name: 'Glass',
+            options: glasses.sort((a,b) => a.localeCompare(b)).map(value => {
+                return {
+                    value,
+                    label: value,
+                    checked:false
+                }
+            })
+        }
     ];
-    filtersList.push({
-      id: 'spirit',
-      name: 'Spirit',
-      options: spiritOptions,
-    });
+
     setFilters(filtersList);
   }, []);
 
