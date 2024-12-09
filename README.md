@@ -1,9 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **Project Overview: Accessible Recipes**
 
-## Getting Started
+## **Introduction**
+The goal of this project is to take an existing drink recipe website and rebuild it following best practices for accessibility. The original site, created in a previous course, is currently inaccessible for screen readers and lacks responsiveness. Our work will focus on transforming this site into a fully accessible and inclusive experience for all users.
 
-First, run the development server:
+---
 
+## **Project Objectives**
+Our primary focus is to adapt the existing site to meet modern accessibility standards. Specifically, we aim to address the following:
+
+1. **Keyboard Navigation:**
+   - Ensure the site structure allows seamless tabbing through all elements.
+   
+2. **Screen Reader Compatibility:**
+   - Use HTML elements effectively to support assistive technologies.
+   - Enable smooth interaction with features such as search fields, navigation, and recipe reading.
+
+3. **Zoom and Magnification:**
+   - Ensure that the site functions properly at various levels of zoom and magnification, meeting standards discussed in the course workshops.
+
+4. **Mobile-First Design:**
+   - Guarantee accessibility across all screen sizes, with a focus on responsive design.
+
+---
+
+## **Approach**
+Our work will include:
+
+- **Research:** Investigating accessibility best practices and exploring relevant HTML elements and principles outlined in WCAG 2.1.
+- **Iterative Development:** Continuously implementing and refining features to ensure the site maintains its form and function while improving accessibility.
+- **Testing:** Conducting user testing with accessibility tools, such as screen readers and keyboard navigation, to validate our implementation.
+
+---
+
+## **Key Principles**
+We will apply the knowledge gained during the course and build upon it through further exploration of accessibility standards. Our efforts will focus on:
+
+- Structuring content for assistive technologies.
+- Ensuring compatibility with both desktop and mobile devices.
+- Prioritizing a user-friendly experience for all individuals, including those with disabilities.
+
+---
+
+**Project Team:**  
+- Carl Rikner  
+- André Roxhage  
+
+**Date:**  
+November 1, 2024
+## Run and build project
 ```bash
 npm run dev
 # or
@@ -14,23 +58,52 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Summary of Feedback from User Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **Aphasia**
 
-## Learn More
+**Feedback:**
 
-To learn more about Next.js, take a look at the following resources:
+- Difficulty remembering drink names. Suggested adding filters for color and glass type.
+- Instructions were easy to read, but symbols for measurements (e.g., 1, 2, 3 cl) could be helpful.
+- Ingredient images could enhance the experience.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Action Items:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Implement visual filters for color and glass type.
+- Add symbols and images for ingredients.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **Cognitive Difficulties (ADHD)**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Feedback:**
+
+- Company name in the navbar is unclear. Footer text is too small.
+- A short introduction on the homepage and an "About Us" page is needed.
+- Filters need an improved user experience and clearer "All" state.
+- Drink cards should include more information (e.g., descriptions and instructions).
+- FAQ with measurement explanations and tools, such as tooltips, would be helpful.
+
+**Action Items:**
+
+- Improve clarity in the navbar and footer.
+- Add a short introduction and an "About Us" page.
+- Enhance filter feedback and create detailed drink cards.
+- Add a FAQ with interactive tools.
+
+---
+
+## **Dyslexia and Difficulty with English**
+
+**Feedback:**
+
+- The "Explore" button could be misunderstood.
+- "Collins glass" was misread as "cold glass."
+- Different glasses should be visualized with icons.
+
+**Action Items:**
+
+- Clarify button text and implement localization.
+-
