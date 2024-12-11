@@ -191,7 +191,9 @@ export default function ExplorePage({params,}: {params: Promise<{ searchQuery: s
                     <legend>
                         <span className="font-medium text-gray-900">
                             {section.name}
-                        </span>
+                        </span>{selectedFilters[section.id].length == 0 ? <span className='ml-2'>
+                            Showing all
+                            </span>: <></>}
                     </legend>
                     <span className="ml-6 flex items-center">
                         <PlusIcon aria-hidden="true" className="size-5 group-data-[open]:hidden" />
