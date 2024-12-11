@@ -159,12 +159,19 @@ export default function ExplorePage({params,}: {params: Promise<{ searchQuery: s
 
   return (
     <main id="main-content" className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen">
-      <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900">
-          Explore drinks!
-        </h1>
-      </div>
-
+        <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+                Explore drinks!
+            </h1>
+        </div>
+        <ul>
+            {selectedFilters["alcoholic"].map(option => {
+                return(
+                <li>
+                    {option},
+                </li>
+            )})}
+        </ul>
       <section className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 pt-6">
         {/* Filters */}
         <form className="col-span-4 lg:col-span-1" role="search" aria-label="Filter drinks">
