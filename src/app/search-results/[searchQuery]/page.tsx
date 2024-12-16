@@ -62,7 +62,9 @@ export default function SearchResultsPage({
         const result = await searchLoader(searchQuery);
 
         if (result.length === 0) {
-          setError(`No results found for "${searchQuery}"`);
+          setError(
+            `No results found for ${decodeURIComponent(searchQuery.toString())}`
+          );
         } else if (result.length > 0) {
           setSearchResult(result);
           setFilteredResult(result);

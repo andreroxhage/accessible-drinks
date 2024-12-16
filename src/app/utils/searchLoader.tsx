@@ -1,4 +1,3 @@
-'use client';
 import { Drink } from '../types';
 import { getCachedSearchResults, setCachedSearchResults } from './cache';
 import fetchJson from './fetchJson';

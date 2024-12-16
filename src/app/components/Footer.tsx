@@ -48,7 +48,7 @@ export default function Footer() {
                 <h3 className="text-base font-semibold leading-6 text-white">
                   Navigation
                 </h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <ul className="mt-6 space-y-4" role="navigation">
                   {navigation.solutions.map(item => (
                     <li key={item.name}>
                       <a
@@ -73,7 +73,6 @@ export default function Footer() {
                       href="https://www.thecocktaildb.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      tabIndex={+1} // Ensure the next tab is the navbar
                       aria-label="TheCocktailDB API - External Link"
                       className="text-secondary-orange-ligher hover:text-secondary-orange underline"
                     >

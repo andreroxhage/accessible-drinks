@@ -69,7 +69,7 @@ export default function RecentDrinksRow() {
                     alt="" // Moving descriptive text to aria-label
                     width={100}
                     height={100}
-                    className="w-full rounded-lg object-cover transition-transform group-hover:scale-105 group-focus:scale-105"
+                    className="w-full rounded-lg object-cover transition-transform group-hover:scale-105 group-focus:scale-105 shadow-md"
                   />
                   <div className="sr-only">
                     {drink.strAlcoholic} {drink.strCategory} cocktail

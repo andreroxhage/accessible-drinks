@@ -1,72 +1,140 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import React from 'react';
+import Image from 'next/image';
+import singleDrinkLoader from './utils/singleDrinkLoader';
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    if (searchQuery.trim() === '') return;
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      router.push(`/search-results/${encodeURIComponent(searchQuery)}`);
+    } catch (error) {
+      console.error(error, 'An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRandomDrink = async () => {
+    setIsLoading(true);
+    try {
+      const randomDrink = await singleDrinkLoader('random');
+      if (randomDrink) {
+        router.push(`/search-results/drink/${randomDrink.idDrink}`);
+      }
+    } catch (error) {
+      console.error('Error fetching random drink', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <main
-      id="main-content"
       aria-labelledby="page-title"
-      className="container mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32"
+      className="container mx-auto px-6 py-8 sm:py-16 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col"
     >
-      <div className=" grid grid-cols-1 lg:grid-cols-12 justify-between items-start gap-8 ">
-        {/* Content Section - 2/3 width (8 columns) */}
-        <div className="flex flex-col items-start justify-start lg:col-span-8">
+      {/* Top Section: Centered Content in Upside-Down T Layout */}
+      <div className="flex-grow flex flex-col justify-center items-center text-center z-10 relative">
+        {/* Header and Mission Statement */}
+        <div className="max-w-2xl gap-6 flex flex-row items-center justify-center text-center mb-8">
+          <Image
+            src="/drinklogo.png"
+            alt="Company name"
+            width={36}
+            height={36}
+            className="h-20 w-auto"
+            priority
+          />
           <h1
             id="page-title"
-            className="text-4xl sm:text-5xl lg:text-6xl text-header font-semibold tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl text-header font-semibold tracking-tight align-middle"
           >
-            Accessibility in Every Sip
+            Accessible Cocktails
           </h1>
-          <p
-            id="mission-description"
-            className="mt-8 text-pretty text-body text-base sm:text-lg lg:text-xl/8 font-medium max-w-3xl"
-          >
-            Our mission is to make every drink accessible to everyone,
-            regardless of ability. Join us in raising a glass to accessibility
-            and inclusion, one sip at a time.
-          </p>
-          <Link
-            href="/explore"
-            className="my-8 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label="Explore drinks"
-          >
-            Find drinks
-          </Link>
         </div>
 
-        {/* SVG  */}
-        <div className="lg:col-span-4 relative h-24 md:h-64 my-12">
-          <svg
-            aria-label="Accessibility Icon: Adaptive Drinking Glass"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute bottom-0 left-0 w-2/5 md:w-1/2 lg:w-2/5 h-auto text-secondary-pink-darker"
-            viewBox="0 0 64 64"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M24 28 L40 28 L38 52 L26 52 Z" />
-            <rect x="28" y="22" width="8" height="6" rx="2" />
-          </svg>
-          <svg
-            aria-label="Accessibility Icon: Inclusive Drink Design"
-            xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-0 right-0 w-2/5 md:w-1/2 lg:w-2/5 h-auto text-secondary-pink-darker"
-            viewBox="0 0 64 64"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M16 28 L32 52 L48 28 Z" />
-            <line x1="32" y1="52" x2="32" y2="60" />
-            <line x1="24" y1="60" x2="40" y2="60" />
-          </svg>
+        {/* Search Container */}
+        <div
+          className="w-full max-w-2xl"
+          role="search"
+          aria-label="Cocktail Search"
+        >
+          <form onSubmit={handleSubmit} className="relative">
+            <div className="flex items-center rounded-full border border-gray-300 bg-white shadow-md focus-within:ring-2 focus-within:ring-primary-pink-darker">
+              <label htmlFor="homepage-search" className="sr-only">
+                Search for a drink
+              </label>
+              <input
+                id="main-content"
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Search for a cocktail..."
+                className="w-full py-3 px-6 text-lg rounded-full border-none focus:outline-none"
+                aria-controls="search-results"
+                aria-describedby="search-description"
+                autoComplete="off"
+              />
+              <button
+                type="button"
+                onClick={handleSubmit}
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-primary-pink-darker text-gray-500 hover:bg-primary-pink transition-colors"
+                aria-label="Search"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6 "
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.5 3a7.5 7.5 0 105.904 12.258l4.348 4.349a.75.75 0 001.06-1.061l-4.348-4.348A7.5 7.5 0 0010.5 3zm0 1.5a6 6 0 100 12 6 6 0 000-12z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+
+      {/* Bottom Section: Optional Navigation or Additional Content */}
+      <footer className="mt-12 text-center z-10 relative">
+        <nav aria-label="Quick Links" className="flex justify-center gap-12">
+          <Link
+            href="/explore"
+            className="text-body hover:text-primary-pink-darker transition-colors"
+            aria-label="Explore drinks by ingredients or categories"
+          >
+            Explore Drinks
+          </Link>
+          <Link
+            href="/faq"
+            className="text-body hover:text-primary-pink-darker transition-colors"
+            aria-label="Frequently Asked Questions"
+          >
+            FAQ
+          </Link>
+          <Link
+            onClick={handleRandomDrink}
+            href={`/search-results/drink/random`}
+            className="text-body hover:text-primary-pink-darker transition-colors"
+            aria-label="Get a random drink suggestion"
+          >
+            Random Drink
+          </Link>
+        </nav>
+      </footer>
     </main>
   );
 }

@@ -14,7 +14,7 @@ export default function Categories() {
           {/* Page Header Section */}
           <div className="mb-12 md:mb-16 flex flex-col sm:flex-row sm:items-center gap-6">
             <div>
-              <h1 className="text-4xl text-header sm:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 sm:mb-8">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl text-header font-semibold tracking-tight mb-4 sm:mb-8">
                 Frequently Asked Questions
               </h1>
 

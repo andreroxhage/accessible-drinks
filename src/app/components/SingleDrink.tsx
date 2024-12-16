@@ -98,7 +98,7 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
           </figure>
 
           {/* Recipe Details Section */}
-          <div className="lg:col-span-1 p-6 rounded-lg bg-white border border-secondary-pink-darker shadow-sm">
+          <div className="lg:col-span-1 p-6 rounded-lg bg-white border border-secondary-pink-darker shadow-md">
             {/* Drink Characteristics */}
             <section
               aria-labelledby="characteristics-heading"

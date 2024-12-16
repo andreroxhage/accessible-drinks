@@ -10,7 +10,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const navItems = [
-  { label: 'Home', href: '/', current: true },
+  { label: 'Find Drinks', href: '/', current: true },
   { label: 'Explore', href: '/explore', current: false },
   { label: 'FAQ', href: '/faq', current: false },
 ];
@@ -45,7 +45,9 @@ export default function ResponsiveHeader() {
       <div className="relative w-100 px-3 py-1">
         <a
           href="#main-content"
+          id="top-focusable"
           className="absolute p-4 text-black bg-white m-2 sr-only focus:not-sr-only"
+          tabIndex={0}
         >
           Skip to Main Content
         </a>
@@ -76,50 +78,52 @@ export default function ResponsiveHeader() {
             </div>
           </div>
           <div className="flex flex-1 items-center justify-center px-2 lg:ml-6 lg:justify-end">
-            <div
-              className="w-full max-w-lg lg:max-w-xs"
-              role="search"
-              aria-label="Site"
-              id="search"
-            >
-              <form onSubmit={handleSubmit}>
-                <div className="w-full flex rounded-md border-0 bg-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset p-1">
-                  <label htmlFor="search-input" className="sr-only">
-                    Search for a drink
-                  </label>
-                  <input
-                    id="search-input"
-                    type="text"
-                    value={searchQuery}
-                    onChange={e => setSearchQuery(e.target.value)}
-                    className="block w-full py-1.5 px-3 text-gray-900 rounded-md border-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-medium"
-                    placeholder="Search for a drink"
-                    aria-controls="search-results"
-                    aria-describedby="search-description"
-                    autoComplete="off"
-                  />
-                  <button
-                    type="button"
-                    onClick={handleSubmit}
-                    className="inset-y-0 right-0 flex items-center justify-center p-2"
-                    aria-label="Search"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="h-5 w-5 text-gray-500"
+            {pathname !== '/' && (
+              <div
+                className="w-full max-w-lg lg:max-w-xs"
+                role="search"
+                aria-label="Site"
+                id="search"
+              >
+                <form onSubmit={handleSubmit}>
+                  <div className="w-full flex rounded-md border-0 bg-white ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset p-1">
+                    <label htmlFor="search-input" className="sr-only">
+                      Search for a drink
+                    </label>
+                    <input
+                      id="search-input"
+                      type="text"
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      className="block w-full py-1.5 px-3 text-gray-900 rounded-md border-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-medium"
+                      placeholder="Search for a drink"
+                      aria-controls="search-results"
+                      aria-describedby="search-description"
+                      autoComplete="off"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleSubmit}
+                      className="inset-y-0 right-0 flex items-center justify-center p-2"
+                      aria-label="Search"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.5 3a7.5 7.5 0 105.904 12.258l4.348 4.349a.75.75 0 001.06-1.061l-4.348-4.348A7.5 7.5 0 0010.5 3zm0 1.5a6 6 0 100 12 6 6 0 000-12z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </form>
-            </div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="h-5 w-5 text-gray-500"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10.5 3a7.5 7.5 0 105.904 12.258l4.348 4.349a.75.75 0 001.06-1.061l-4.348-4.348A7.5 7.5 0 0010.5 3zm0 1.5a6 6 0 100 12 6 6 0 000-12z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
           <div className="flex items-center lg:hidden">
             {/* Mobile menu button */}

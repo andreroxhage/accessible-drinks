@@ -4,13 +4,15 @@ import SingleDrink from '@/app/components/SingleDrink';
 export default async function SingleDrinkPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const drink = await singleDrinkLoader(params.id);
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+  const drink = await singleDrinkLoader(id);
 
   if (!drink) {
     return <div>Drink not found</div>;
-  } else {
-    return <SingleDrink drink={drink} />;
   }
+
+  return <SingleDrink drink={drink} />;
 }
