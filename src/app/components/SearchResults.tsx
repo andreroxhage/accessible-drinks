@@ -51,7 +51,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     fill
                     priority={index < 4}
-                    className="object-cover transition shadow-md group-hover:scale-105"
+                    className="object-cover transition shadow-md group-hover:scale-105 rounded-md"
                   />
                 </div>
 
