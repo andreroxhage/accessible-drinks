@@ -5,6 +5,10 @@ import { use, useState } from 'react';
 
 export default function BreadcrumbExplore() {
     const route = usePathname().split("/")[1];
+    if(!route[1]){
+        return (<></>)
+    }
+    else{
     return (
         <nav aria-label="Breadcrumb" className="mt-4 flex">
         <ol role="list" className="flex items-center space-x-4">
@@ -37,5 +41,5 @@ export default function BreadcrumbExplore() {
             </li>
         </ol>
         </nav>
-    );
+    );}
 }
