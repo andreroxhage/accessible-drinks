@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Navbar from './components/NavBar';
 import Footer from './components/Footer';
+import BreadcrumbExplore from './components/Breadcrumb';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary-pink-lighter text-body`}
       >
         <Navbar />
+        <BreadcrumbExplore />
         {children}
         <Footer />
       </body>

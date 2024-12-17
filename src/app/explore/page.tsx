@@ -22,6 +22,7 @@ import {
 } from '../utils/database';
 import { Drink } from '../types';
 import SearchResult from '../components/SearchResults';
+import BreadcrumbExplore from '../components/Breadcrumb';
 
 interface DrinkMap {
   [id: string]: Drink;
@@ -164,14 +165,6 @@ export default function ExplorePage({params,}: {params: Promise<{ searchQuery: s
                 Explore drinks!
             </h1>
         </div>
-        <ul>
-            {selectedFilters["alcoholic"].map(option => {
-                return(
-                <li>
-                    {option},
-                </li>
-            )})}
-        </ul>
       <section className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4 pt-6">
         {/* Filters */}
         <form className="col-span-4 lg:col-span-1" role="search" aria-label="Filter drinks">

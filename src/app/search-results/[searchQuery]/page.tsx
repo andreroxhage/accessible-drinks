@@ -17,6 +17,7 @@ import {
   PlusIcon,
   MinusIcon,
 } from '@heroicons/react/20/solid';
+import BreadcrumbExplore from '@/app/components/Breadcrumb';
 
 const sortOptions = [
   { name: 'Alphabetical', key: 'strDrink', ascending: true },

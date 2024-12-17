@@ -1,6 +1,7 @@
 import React from 'react';
 import Accordion from '../components/CategoriesAccordion';
 import FAQAccordion from '../components/FAQAccordion';
+import BreadcrumbExplore from '../components/Breadcrumb';
 
 export default function Categories() {
   return (

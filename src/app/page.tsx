@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import React from 'react';
+import BreadcrumbExplore from './components/Breadcrumb';
 
 export default function Home() {
   return (
     <main
       id="main-content"
       aria-labelledby="page-title"
-      className="container mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32"
+      className="container mx-auto px-6 py-16 sm:py-24 lg:px-8 lg:py-32 "
     >
+        <BreadcrumbExplore />
       <div className=" grid grid-cols-1 lg:grid-cols-12 justify-between items-start gap-8 ">
         {/* Content Section - 2/3 width (8 columns) */}
         <div className="flex flex-col items-start justify-start lg:col-span-8">
