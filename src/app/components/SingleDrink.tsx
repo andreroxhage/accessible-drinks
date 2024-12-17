@@ -4,7 +4,7 @@ import Image from 'next/image';
 import RecentDrinksRow from '@/app/components/RecentDrinksRow';
 import { Drink } from '@/app/types';
 import { useRecentDrinks } from '@/app/utils/cache';
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 export default function SingleDrink({ drink }: { drink: Drink }) {
   // Refs for keyboard navigation
@@ -24,6 +24,22 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
 
   const { addToRecentDrinks, recentDrinks } = useRecentDrinks();
   addToRecentDrinks(drink);
+
+  useEffect(() => {
+    async function fetchGlasses() {
+      try {
+        const response = await fetch(
+          'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list'
+        );
+        const data = await response.json();
+        console.log('Glasses:', data.drinks);
+      } catch (error) {
+        console.error('Error fetching glasses:', error);
+      }
+    }
+
+    fetchGlasses();
+  }, []);
 
   // Keyboard navigation handlers
   const handleKeyNavigation = useCallback((e: React.KeyboardEvent) => {
@@ -98,7 +114,7 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
           </figure>
 
           {/* Recipe Details Section */}
-          <div className="lg:col-span-1 p-6 rounded-lg bg-white border border-secondary-pink-darker shadow-sm">
+          <div className="lg:col-span-1 p-6 rounded-lg bg-white border border-secondary-pink-darker shadow-md">
             {/* Drink Characteristics */}
             <section
               aria-labelledby="characteristics-heading"
@@ -143,8 +159,9 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
                   </dt>
                   <dd
                     tabIndex={0}
-                    className="text-base sm:text-lg lg:text-xl/8 text-header"
+                    className="text-base sm:text-lg lg:text-xl/8 text-header flex flex-row gap-3"
                   >
+                    {getGlassIcon(drink.strGlass)}
                     {drink.strGlass}
                   </dd>
                 </div>
@@ -227,4 +244,322 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
       </aside>
     </main>
   );
+
+  function getGlassIcon(strGlass: string): React.ReactNode {
+    switch (strGlass.toLowerCase()) {
+      case 'highball glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="highball glass"
+          >
+            <rect
+              x="20"
+              y="8"
+              width="24"
+              height="48"
+              rx="4"
+              ry="4"
+              fill="#E0E0E0"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <rect
+              x="22"
+              y="20"
+              width="20"
+              height="12"
+              rx="2"
+              ry="2"
+              fill="#A8DADC"
+            />
+          </svg>
+        );
+      case 'old-fashioned glass':
+      case 'whiskey glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="old-fashioned glass"
+          >
+            <rect
+              x="16"
+              y="16"
+              width="32"
+              height="32"
+              rx="4"
+              ry="4"
+              fill="#E0E0E0"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="16"
+              y1="42"
+              x2="48"
+              y2="42"
+              stroke="#A8DADC"
+              strokeWidth="4"
+            />
+          </svg>
+        );
+      case 'cocktail glass':
+      case 'martini glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="cocktail glass"
+          >
+            <polygon
+              points="32,6 12,24 32,36 52,24"
+              fill="#FFC1E3"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="32"
+              y1="36"
+              x2="32"
+              y2="54"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="56" r="2" fill="#333" />
+          </svg>
+        );
+      case 'copper mug':
+      case 'coffee mug':
+      case 'irish coffee cup':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="copper mug"
+          >
+            <rect
+              x="20"
+              y="14"
+              width="24"
+              height="36"
+              rx="4"
+              ry="4"
+              fill="#D97706"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <rect
+              x="46"
+              y="22"
+              width="6"
+              height="20"
+              rx="3"
+              ry="3"
+              fill="#FFD166"
+              stroke="#333"
+              strokeWidth="2"
+            />
+          </svg>
+        );
+      case 'collins glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="collins glass"
+          >
+            <rect
+              x="20"
+              y="8"
+              width="24"
+              height="48"
+              rx="4"
+              ry="4"
+              fill="#B9E3C6"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="28" r="4" fill="#FFC857" />
+          </svg>
+        );
+      case 'champagne flute':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="champagne flute"
+          >
+            <rect
+              x="28"
+              y="10"
+              width="8"
+              height="30"
+              rx="2"
+              ry="2"
+              fill="#FFEBB8"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="32"
+              y1="40"
+              x2="32"
+              y2="56"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="58" r="2" fill="#333" />
+          </svg>
+        );
+      case 'hurricane glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="hurricane glass"
+          >
+            <path
+              d="M32,10 C24,10 20,22 24,34 C28,46 36,46 40,34 C44,22 40,10 32,10 Z"
+              fill="#FFB5A7"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="32"
+              y1="46"
+              x2="32"
+              y2="56"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="58" r="2" fill="#333" />
+          </svg>
+        );
+      case 'wine glass':
+      case 'white wine glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="wine glass"
+          >
+            <path
+              d="M32,12 C28,12 26,20 26,28 C26,36 28,42 32,42 C36,42 38,36 38,28 C38,20 36,12 32,12 Z"
+              fill="#FFD166"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="32"
+              y1="42"
+              x2="32"
+              y2="56"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="58" r="2" fill="#333" />
+          </svg>
+        );
+      case 'beer mug':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="beer mug"
+          >
+            <rect
+              x="16"
+              y="16"
+              width="28"
+              height="32"
+              rx="4"
+              ry="4"
+              fill="#F9C74F"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <rect
+              x="44"
+              y="20"
+              width="8"
+              height="24"
+              rx="4"
+              ry="4"
+              fill="#FFD166"
+              stroke="#333"
+              strokeWidth="2"
+            />
+          </svg>
+        );
+      case 'margarita glass':
+      case 'margarita/coupette glass':
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="margarita glass"
+          >
+            <path
+              d="M32,6 C24,6 20,12 22,20 C24,28 40,28 42,20 C44,12 40,6 32,6 Z"
+              fill="#A8E6CF"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <line
+              x1="32"
+              y1="28"
+              x2="32"
+              y2="56"
+              stroke="#333"
+              strokeWidth="2"
+            />
+            <circle cx="32" cy="58" r="2" fill="#333" />
+          </svg>
+        );
+      default:
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="32"
+            height="32"
+            aria-label="default glass"
+          >
+            <rect
+              x="20"
+              y="8"
+              width="24"
+              height="48"
+              rx="4"
+              ry="4"
+              fill="#D9D9D9"
+              stroke="#333"
+              strokeWidth="2"
+            />
+          </svg>
+        );
+    }
+  }
 }
