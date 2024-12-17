@@ -5,8 +5,9 @@ import RecentDrinksRow from '@/app/components/RecentDrinksRow';
 import { Drink } from '@/app/types';
 import { useRecentDrinks } from '@/app/utils/cache';
 import { useCallback, useEffect, useRef } from 'react';
+import Breadcrumb from './Breadcrumb';
 
-export default function SingleDrink({ drink }: { drink: Drink }) {
+export default function SingleDrink({ drink, searchQuery }: { drink: Drink, searchQuery?: string }) {
   // Refs for keyboard navigation
   const ingredientsRef = useRef<HTMLElement>(null);
   const instructionsRef = useRef<HTMLElement>(null);
@@ -32,7 +33,6 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
           'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list'
         );
         const data = await response.json();
-        console.log('Glasses:', data.drinks);
       } catch (error) {
         console.error('Error fetching glasses:', error);
       }
@@ -89,6 +89,7 @@ export default function SingleDrink({ drink }: { drink: Drink }) {
       <article className="recipe-container" aria-labelledby="recipe-title">
         {/* Header Section */}
         <header className="mb-8">
+          <Breadcrumb drinkName={drink.strDrink}/>
           <h1
             id="recipe-title"
             className="text-2xl sm:text-3xl lg:text-4xl/tight text-header font-bold tracking-tight"

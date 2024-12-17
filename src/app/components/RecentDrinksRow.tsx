@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRecentDrinks } from '@/app/utils/cache';
 import { useRef } from 'react';
 
-export default function RecentDrinksRow() {
+export default function RecentDrinksRow(searchQuery: string) {
   const { recentDrinks } = useRecentDrinks();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +59,7 @@ export default function RecentDrinksRow() {
               className="flex flex-col items-center w-full p-1 gap-2 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500 overflow-x-hidden"
             >
               <Link
-                href={`/search-results/drink/${drink.idDrink}`}
+                href={`/${drink.strDrink}/${drink.idDrink}`}
                 className="w-full group py-1"
                 aria-labelledby={`drink-name-${drink.idDrink}`}
               >

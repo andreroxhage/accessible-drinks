@@ -17,6 +17,7 @@ import {
 } from '../utils/database';
 import { Drink } from '../types';
 import SearchResult from '../components/SearchResults';
+import Breadcrumb from '../components/Breadcrumb';
 
 interface DrinkMap {
   [id: string]: Drink;
@@ -161,7 +162,7 @@ export default function ExplorePage({
 
   return (
     <main className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen">
-      <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
+      <div className="pb-6">
         <h1 className="text-4xl font-bold tracking-tight text-header">
           Explore Drinks ingredients or categories
         </h1>

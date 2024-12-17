@@ -8,7 +8,7 @@ interface SearchResultProps {
   searchQuery?: string;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
+const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery = 'explore' }) => {
   const getAltText = (drink: Drink) => {
     const tags = drink.strTags ? ` - ${drink.strTags}` : '';
     return `${drink.strDrink} (${drink.strGlass})${tags}`;
@@ -39,7 +39,7 @@ const SearchResult: React.FC<SearchResultProps> = ({ drinks, searchQuery }) => {
           {drinks.map((drink, index) => (
             <div key={index}>
               <Link
-                href={`/search-results/drink/${drink.idDrink}`}
+                href={`/${searchQuery}/${drink.idDrink}`}
                 key={drink.idDrink}
                 className="group relative bg-white shadow-md rounded-lg overflow-hidden focus:ring-2 focus:ring-offset-2"
                 aria-labelledby={`drink-title-${drink.idDrink} drink-description-${drink.idDrink}`}

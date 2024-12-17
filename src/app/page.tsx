@@ -16,7 +16,7 @@ export default function Home() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      router.push(`/search-results/${encodeURIComponent(searchQuery)}`);
+      router.push(`/${encodeURIComponent(searchQuery)}`);
     } catch (error) {
       console.error(error, 'An error occurred. Please try again.');
     } finally {
@@ -27,9 +27,9 @@ export default function Home() {
   const handleRandomDrink = async () => {
     setIsLoading(true);
     try {
-      const randomDrink = await singleDrinkLoader('random');
+      const randomDrink = await singleDrinkLoader('random???');
       if (randomDrink) {
-        router.push(`/search-results/drink/${randomDrink.idDrink}`);
+        router.push(`/${randomDrink.strDrink}/${randomDrink.idDrink}`);
       }
     } catch (error) {
       console.error('Error fetching random drink', error);
@@ -127,7 +127,7 @@ export default function Home() {
           </Link>
           <Link
             onClick={handleRandomDrink}
-            href={`/search-results/drink/random`}
+            href={`/random???`}
             className="text-body hover:text-primary-pink-darker transition-colors"
             aria-label="Get a random drink suggestion"
           >
