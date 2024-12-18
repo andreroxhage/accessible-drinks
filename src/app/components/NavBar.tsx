@@ -4,7 +4,6 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from '@headlessui/react';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -26,7 +25,7 @@ export default function ResponsiveHeader() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      router.push(`/search-results/${searchQuery}`);
+      router.push(`/${encodeURIComponent(searchQuery)}`);
     } catch (error) {
       console.error(error, 'An error occurred. Please try again.');
     } finally {
