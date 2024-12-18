@@ -15,12 +15,21 @@ async function apiFetch<T>(path:string): Promise<T> {
     return await response.json() as T;
 }
 
+export async function getDrinksByAlcoholContent(option:string) {
+    var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?a=' + option);
+    return drinks;
+}
+
 export async function getDrinksByCategory(category:string) {
     var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?c=' + category);
     return drinks;
 }
 export async function getDrinksByIngredient(ingredient:string) {
     var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?i=' + ingredient); 
+    return drinks;
+}
+export async function getDrinksByGlass(option:string){
+    var {drinks} = await apiFetch<{drinks:Drink[]}>('filter.php?g=' + option); 
     return drinks;
 }
 
