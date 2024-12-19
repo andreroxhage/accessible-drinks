@@ -201,17 +201,38 @@ export default function ExplorePage({
           role="search"
           aria-label="Filter drinks"
         >
-          <fieldset key="alcoholic">
+          <fieldset>
+            <legend className="sr-only">Alcoholic content filters</legend>
             <Disclosure
-              defaultOpen={true}
+              defaultOpen={false}
               key={alcoholics[0]}
               as="div"
               className="border border-gray-200 py-6 bg-white hover:bg-gray-50 rounded-lg p-4 mb-4"
             >
-              <h3>Alcoholic content</h3>
+              <h3 className="-my-3 flow-root">
+                <DisclosureButton className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500">
+                  <span className="font-medium text-gray-900">
+                    Alcoholic content
+                  </span>
+                  {selectedFilters['alcoholic'].length ===
+                    alcoholics.length && (
+                    <span className="ml-2">Showing all</span>
+                  )}
+                  <span className="ml-6 flex items-center">
+                    <PlusIcon
+                      aria-hidden="true"
+                      className="size-5 group-data-[open]:hidden"
+                    />
+                    <MinusIcon
+                      aria-hidden="true"
+                      className="size-5 [.group:not([data-open])_&]:hidden"
+                    />
+                  </span>
+                </DisclosureButton>
+              </h3>
               <DisclosurePanel className="pt-6">
-                {alcoholics.map(option => {
-                  return (
+                <div className="space-y-4">
+                  {alcoholics.map(option => (
                     <div key={option} className="flex items-center">
                       <input
                         onChange={() => handleFilterChange('alcoholic', option)}
@@ -220,7 +241,7 @@ export default function ExplorePage({
                         id={option}
                         value={option}
                         name="alcoholic-category"
-                        className="size-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                        className="size-4 rounded border-gray-300 text-secondary-pink-darker"
                       />
                       <label
                         className="ml-3 text-sm text-gray-600"
@@ -228,15 +249,16 @@ export default function ExplorePage({
                       >
                         {option}
                       </label>
-                      <br></br>
                     </div>
-                  );
-                })}
+                  ))}
+                </div>
               </DisclosurePanel>
             </Disclosure>
           </fieldset>
+
           {filters.map(section => (
             <fieldset key={section.id}>
+              <legend className="sr-only">{section.name} filters</legend>
               <Disclosure
                 key={section.id}
                 as="div"
@@ -244,16 +266,12 @@ export default function ExplorePage({
               >
                 <h3 className="-my-3 flow-root">
                   <DisclosureButton className="group flex w-full items-center justify-between py-3 text-sm text-gray-400 hover:text-gray-500">
-                    <legend>
-                      <span className="font-medium text-gray-900">
-                        {section.name}
-                      </span>
-                      {selectedFilters[section.id].length == 0 ? (
-                        <span className="ml-2">Showing all</span>
-                      ) : (
-                        <></>
-                      )}
-                    </legend>
+                    <span className="font-medium text-gray-900">
+                      {section.name}
+                    </span>
+                    {selectedFilters[section.id].length == 0 && (
+                      <span className="ml-2">Showing all</span>
+                    )}
                     <span className="ml-6 flex items-center">
                       <PlusIcon
                         aria-hidden="true"
@@ -279,7 +297,7 @@ export default function ExplorePage({
                           onChange={() =>
                             handleFilterChange(section.id, option.value)
                           }
-                          className="size-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                          className="size-4 rounded border-gray-300 text-secondary-pink-darker"
                         />
                         <label
                           htmlFor={option.value}

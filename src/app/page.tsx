@@ -113,14 +113,14 @@ export default function Home() {
         <nav aria-label="Quick Links" className="flex justify-center gap-12">
           <Link
             href="/explore#main-content"
-            className="text-body hover:text-primary-pink-darker transition-colors"
+            className="text-orange-900 hover:text-orange-600"
             aria-label="Explore drinks by ingredients or categories"
           >
             Explore Drinks
           </Link>
           <Link
             href="/faq"
-            className="text-body hover:text-primary-pink-darker transition-colors"
+            className="text-orange-900 hover:text-orange-600"
             aria-label="Frequently Asked Questions"
           >
             FAQ
@@ -128,7 +128,7 @@ export default function Home() {
           <Link
             onClick={handleRandomDrink}
             href={`/random???`}
-            className="text-body hover:text-primary-pink-darker transition-colors"
+            className="text-orange-900 hover:text-orange-600"
             aria-label="Get a random drink suggestion"
           >
             Random Drink

@@ -263,7 +263,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="highball glass"
           >
             <rect
               x="20"
@@ -295,7 +294,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="old-fashioned glass"
           >
             <rect
               x="16"
@@ -326,7 +324,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="cocktail glass"
           >
             <polygon
               points="32,6 12,24 32,36 52,24"
@@ -354,7 +351,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="copper mug"
           >
             <rect
               x="20"
@@ -387,7 +383,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="collins glass"
           >
             <rect
               x="20"
@@ -410,7 +405,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="champagne flute"
           >
             <rect
               x="28"
@@ -441,7 +435,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="hurricane glass"
           >
             <path
               d="M32,10 C24,10 20,22 24,34 C28,46 36,46 40,34 C44,22 40,10 32,10 Z"
@@ -468,7 +461,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="wine glass"
           >
             <path
               d="M32,12 C28,12 26,20 26,28 C26,36 28,42 32,42 C36,42 38,36 38,28 C38,20 36,12 32,12 Z"
@@ -494,7 +486,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="beer mug"
           >
             <rect
               x="16"
@@ -528,7 +519,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="margarita glass"
           >
             <path
               d="M32,6 C24,6 20,12 22,20 C24,28 40,28 42,20 C44,12 40,6 32,6 Z"
@@ -554,7 +544,6 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
             viewBox="0 0 64 64"
             width="32"
             height="32"
-            aria-label="default glass"
           >
             <rect
               x="20"
