@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRecentDrinks } from '@/app/utils/cache';
 import { useRef } from 'react';
 
-export default function RecentDrinksRow(searchQuery: string) {
+export default function RecentDrinksRow() {
   const { recentDrinks } = useRecentDrinks();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 

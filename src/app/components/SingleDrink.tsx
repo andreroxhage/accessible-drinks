@@ -41,6 +41,14 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
     fetchGlasses();
   }, []);
 
+  const mainContent = useRef<HTMLDivElement>(null);
+   useEffect(() => {
+     if (mainContent.current) {
+       mainContent.current.tabIndex = -1;
+       mainContent.current.focus();
+     }
+   }, []);
+
   // Keyboard navigation handlers
   const handleKeyNavigation = useCallback((e: React.KeyboardEvent) => {
     if (e.altKey) {
@@ -64,39 +72,39 @@ export default function SingleDrink({ drink, searchQuery }: { drink: Drink, sear
       className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen"
       onKeyDown={handleKeyNavigation}
     >
-      {/* Skip Links */}
-      <div className="skip-links">
-        <a
-          href="#characteristics"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
-        >
-          Skip to Drink Characteristics
-        </a>
-        <a
-          href="#ingredients"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
-        >
-          Skip to Ingredients
-        </a>
-        <a
-          href="#instructions"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
-        >
-          Skip to Instructions
-        </a>
-      </div>
-
       <article className="recipe-container" aria-labelledby="recipe-title">
         {/* Header Section */}
         <header className="mb-8">
-          <Breadcrumb drinkName={drink.strDrink}/>
+          <Breadcrumb drinkName={drink.strDrink} />
           <h1
+            ref={mainContent}
             id="recipe-title"
             className="text-2xl sm:text-3xl lg:text-4xl/tight text-header font-bold tracking-tight"
             tabIndex={0}
           >
             Recipe for {drink.strDrink}
           </h1>
+          {/* Skip Links */}
+          <div className="skip-links">
+            <a
+              href="#characteristics"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
+            >
+              Skip to Drink Characteristics
+            </a>
+            <a
+              href="#ingredients"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
+            >
+              Skip to Ingredients
+            </a>
+            <a
+              href="#instructions"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-24 focus:right-6 bg-white p-4 rounded shadow"
+            >
+              Skip to Instructions
+            </a>
+          </div>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

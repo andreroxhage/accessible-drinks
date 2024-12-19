@@ -29,7 +29,7 @@ export default function Home() {
     try {
       const randomDrink = await singleDrinkLoader('random???');
       if (randomDrink) {
-        router.push(`/${randomDrink.strDrink}/${randomDrink.idDrink}`);
+        router.push(`/${randomDrink.strDrink}/${randomDrink.idDrink}#main-content`);
       }
     } catch (error) {
       console.error('Error fetching random drink', error);
@@ -112,7 +112,7 @@ export default function Home() {
       <footer className="mt-12 text-center z-10 relative">
         <nav aria-label="Quick Links" className="flex justify-center gap-12">
           <Link
-            href="/explore"
+            href="/explore#main-content"
             className="text-body hover:text-primary-pink-darker transition-colors"
             aria-label="Explore drinks by ingredients or categories"
           >
