@@ -190,7 +190,7 @@ export default function ExplorePage({
     <main className="container mx-auto px-6 py-16 sm:py-12 lg:px-8 lg:py-16 min-h-screen">
       <div className="pb-6">
         <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-header">
-          Explore Drinks by Ingredients or Categories
+          Explore Drinks
         </h1>
       </div>
 
@@ -214,10 +214,6 @@ export default function ExplorePage({
                   <span className="font-medium text-gray-900">
                     Alcoholic content
                   </span>
-                  {selectedFilters['alcoholic'].length ===
-                    alcoholics.length && (
-                    <span className="ml-2">Showing all</span>
-                  )}
                   <span className="ml-6 flex items-center">
                     <PlusIcon
                       aria-hidden="true"
@@ -269,9 +265,6 @@ export default function ExplorePage({
                     <span className="font-medium text-gray-900">
                       {section.name}
                     </span>
-                    {selectedFilters[section.id].length == 0 && (
-                      <span className="ml-2">Showing all</span>
-                    )}
                     <span className="ml-6 flex items-center">
                       <PlusIcon
                         aria-hidden="true"

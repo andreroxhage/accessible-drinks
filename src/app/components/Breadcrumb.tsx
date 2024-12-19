@@ -9,6 +9,7 @@ export default function Breadcrumb({ drinkName }: { drinkName?: string }) {
   const segments = pathname.split('/').filter(Boolean);
   const crumbs = [{ name: 'Home', href: '/', current: segments.length === 0 }];
 
+  // PLEASE REWRITE THIS HARD CODED LOGIC
   if (segments.length > 0) {
     const firstSegment = segments[0];
 
