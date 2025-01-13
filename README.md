@@ -1,53 +1,56 @@
-# **Project Overview: Accessible Recipes**
+# **Accessible Recipes: Project Overview**
 
 ## **Introduction**
-The goal of this project is to take an existing drink recipe website and rebuild it following best practices for accessibility. The original site, created in a previous course, is currently inaccessible for screen readers and lacks responsiveness. Our work will focus on transforming this site into a fully accessible and inclusive experience for all users.
-
----
+The goal of this project is to transform an existing drink recipe website into a fully accessible and inclusive platform. The original site—created in a previous course—was notably inaccessible for users dependent on screen readers and lacked responsive design. By employing modern accessibility standards, such as WCAG 2.1 and WAI-ARIA, we aim to create an environment that meets a wide range of user needs.
 
 ## **Project Objectives**
-Our primary focus is to adapt the existing site to meet modern accessibility standards. Specifically, we aim to address the following:
+1. **Keyboard Navigation**  
+   Ensure the site structure allows seamless tabbing through all elements.
 
-1. **Keyboard Navigation:**
-   - Ensure the site structure allows seamless tabbing through all elements.
-   
-2. **Screen Reader Compatibility:**
-   - Use HTML elements effectively to support assistive technologies.
-   - Enable smooth interaction with features such as search fields, navigation, and recipe reading.
+2. **Screen Reader Compatibility**  
+   Utilize semantic HTML and ARIA attributes to support assistive technologies in search fields, navigation, and recipe viewing.
 
-3. **Zoom and Magnification:**
-   - Ensure that the site functions properly at various levels of zoom and magnification, meeting standards discussed in the course workshops.
+3. **Zoom & Magnification**  
+   Confirm that the site remains functional and clear at multiple zoom levels, aligned with best practices covered in course workshops.
 
-4. **Mobile-First Design:**
-   - Guarantee accessibility across all screen sizes, with a focus on responsive design.
-
----
+4. **Responsive Design**  
+   Guarantee accessibility on all screen sizes, prioritizing a responsive layout that facilitates interaction on both mobile and desktop devices.
 
 ## **Approach**
-Our work will include:
+- **Research**  
+  Investigate accessibility guidelines and relevant standards (WCAG 2.1, WAI-ARIA) to inform site structure and interactions.
 
-- **Research:** Investigating accessibility best practices and exploring relevant HTML elements and principles outlined in WCAG 2.1.
-- **Iterative Development:** Continuously implementing and refining features to ensure the site maintains its form and function while improving accessibility.
-- **Testing:** Conducting user testing with accessibility tools, such as screen readers and keyboard navigation, to validate our implementation.
+- **Iterative Development**  
+  Continuously refine features based on user testing and expert feedback, ensuring each improvement aligns with accessibility principles.
 
----
+- **Testing**  
+  Employ accessibility tools (e.g., screen readers, keyboard-only navigation) and user feedback to validate and adjust site functionality.
 
 ## **Key Principles**
-We will apply the knowledge gained during the course and build upon it through further exploration of accessibility standards. Our efforts will focus on:
+- **Assistive Technology Support**  
+  Provide robust HTML semantics and ARIA attributes to ensure compatibility with various screen readers and other assistive technologies.
 
-- Structuring content for assistive technologies.
-- Ensuring compatibility with both desktop and mobile devices.
-- Prioritizing a user-friendly experience for all individuals, including those with disabilities.
+- **Responsive & Mobile-First Design**  
+  Adapt layouts for different devices and screen sizes, maintaining functionality under zoom, magnification, and orientation changes.
+
+- **User-Focused Experience**  
+  Present recipes, filters, and additional features in ways that reduce cognitive load and support a wide range of abilities.
+
+## **Project Team**
+- **Carl Rikner**  
+  Technical lead for Next.js, API integration, and database-related tasks.  
+  Implemented filtering and sorting logic.  
+  Performed testing and validation of screen reader functionality.
+
+- **André Roxhage**  
+  Primarily responsible for frontend accessibility features and application design.  
+  Performed testing and validation of screen reader functionality.
+
+**Date:** January 13, 2024
 
 ---
 
-**Project Team:**  
-- Carl Rikner  
-- André Roxhage  
-
-**Date:**  
-November 1, 2024
-## Run and build project
+## **Running & Building the Project**
 ```bash
 npm run dev
 # or
@@ -56,54 +59,3 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
-
-
-# Summary of Feedback from User Tests
-
-## **Aphasia**
-
-**Feedback:**
-
-- Difficulty remembering drink names. Suggested adding filters for color and glass type.
-- Instructions were easy to read, but symbols for measurements (e.g., 1, 2, 3 cl) could be helpful.
-- Ingredient images could enhance the experience.
-
-**Action Items:**
-
-- Implement visual filters for color and glass type.
-- Add symbols and images for ingredients.
-
----
-
-## **Cognitive Difficulties (ADHD)**
-
-**Feedback:**
-
-- Company name in the navbar is unclear. Footer text is too small.
-- A short introduction on the homepage and an "About Us" page is needed.
-- Filters need an improved user experience and clearer "All" state.
-- Drink cards should include more information (e.g., descriptions and instructions).
-- FAQ with measurement explanations and tools, such as tooltips, would be helpful.
-
-**Action Items:**
-
-- Improve clarity in the navbar and footer.
-- Add a short introduction and an "About Us" page.
-- Enhance filter feedback and create detailed drink cards.
-- Add a FAQ with interactive tools.
-
----
-
-## **Dyslexia and Difficulty with English**
-
-**Feedback:**
-
-- The "Explore" button could be misunderstood.
-- "Collins glass" was misread as "cold glass."
-- Different glasses should be visualized with icons.
-
-**Action Items:**
-
-- Clarify button text and implement localization.
--
