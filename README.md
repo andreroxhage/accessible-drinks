@@ -1,4 +1,4 @@
-# **Accessible Recipes: Project Overview**
+# **Accessible Drinks: Project Overview**
 
 ## **Introduction**
 The goal of this project is to transform an existing drink recipe website into a fully accessible and inclusive platform. The original site—created in a previous course—was notably inaccessible for users dependent on screen readers and lacked responsive design. By employing modern accessibility standards, such as WCAG 2.1 and WAI-ARIA, we aim to create an environment that meets a wide range of user needs.
